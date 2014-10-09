@@ -92,11 +92,13 @@ add_action( 'widgets_init', 'commonplace_widgets_init' );
  * Enqueue scripts and styles.
  */
 function commonplace_scripts() {
-	wp_enqueue_style( 'commonplace-foundation', get_template_directory_uri() . '/css/foundation/foundation.css');
-	wp_enqueue_style( 'commonplace-style', get_stylesheet_uri(), array('commonplace-foundation'));
+	wp_enqueue_style( 'commonplace-foundation-css', get_template_directory_uri() . '/css/foundation/foundation.css');
+	wp_enqueue_style( 'commonplace-style', get_stylesheet_uri(), array('commonplace-foundation-css'));
 
 	wp_enqueue_script( 'commonplace-modernizr', get_template_directory_uri() . '/js/vendor/custom.modernizr.js', array(), '20120206', true );
 	wp_enqueue_script( 'commonplace-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
+	wp_enqueue_script( 'commonplace-foundation-js', get_template_directory_uri() . '/js/foundation/foundation.js', array());
+	wp_enqueue_script( 'commonplace-foundation-abide', get_template_directory_uri() . '/js/foundation/foundation.abide.js', array('commonplace-foundation-js'));
 
 	wp_enqueue_script( 'commonplace-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
 
