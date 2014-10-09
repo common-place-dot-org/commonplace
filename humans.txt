@@ -1,0 +1,33 @@
+/* TEAM */
+
+	Andrew Bacon
+	Team Lead
+	andrew.bacon [at] me.com
+	http://andrewbacon.net
+	
+	Sam Menza
+	PHP Developer
+	http://www.sammenza.com/
+
+	Alexxis Letizia
+	Designer
+	https://www.linkedin.com/pub/alexxis-letizia/50/b70/927
+
+
+							
+/* THANKS */
+							
+	Tom Scheinfeldt
+	Clarissa Ceglio
+	American Antiquarian Society
+	University of Connecticut
+		School of Fine Arts, Department of Digital Media & Design
+		College of Liberal Arts & Sciences, Department of History
+
+	
+/* SITE */
+                  
+	Last update: YYYY/MM/DD                             
+	Standards: HTML5, CSS3                           
+	Components: Modernizr, jQuery, Sass, Compass, Zurb Foundation                            
+	Software: Dreamweaver CC, Github, Photoshop
