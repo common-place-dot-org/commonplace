@@ -4,7 +4,15 @@
  *
  * @package commonplace
  */
+/* Note by Sam M: Must put this in common-place theme file for featured image support*/
 
+
+add_theme_support( 'post-thumbnails' );
+
+
+/*-------------------------------------*/
+
+include "custom-post.php";
 /**
  * Set the content width based on the theme's design and stylesheet.
  */
