@@ -19,27 +19,73 @@ get_header(); ?>
 		<?php if ( have_posts() ) : ?>
 
 			<?php /* Start the Loop */ ?>
-			<?php while ( have_posts() ) : the_post(); ?>
+						<!-- Issue and Article Query  -->
+						<h1> Issue List </h1>
+						<?php
+								$args = array(
+									'post_type' => 'issue',
+									'tax-query' => array(
+										'taxonomy'=> 'Themes',
+										'field'=>'slug'
+										)
+								);
+								$issues=new WP_Query($args);
+								if($issues->have_posts()){
+									while($issues->have_posts()){
+										$issues->the_post();
+										$volume = get_post_meta( get_the_ID(), 'volume', true );
+										$theVolume = get_field("volume");
+										?>
+										<h3><?php the_title() ?> </h3>
+										<div class="volume-number">
+											<p><?php echo $volume." ".$theVolume ?></p>
+										</div><?php
+									}
 
-				<?php
-					/* Include the Post-Format-specific template for the content.
-					 * If you want to override this in a child theme, then include a file
-					 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-					 */
-					get_template_part( 'content', get_post_format() );
-					echo '<h1>Boom</h1>';
-					 print_r( get_field('post_objects')  );
-				?>
+								}
+								else{
+									echo "There are no volumes";
+								}
+								?>
 
-			<?php endwhile; ?>
+								<?php
+										$args = array(
+											'post_type' => 'article'
+										);
+										$articles=new WP_Query($args);
+										if($articles->have_posts()){
+											while($articles->have_posts()){
+												$articles->the_post();
+												$volume = array(get_post_meta( get_the_ID(), 'authors', true ));
+												$theVolume = get_field("authors");
+												$s;
+												?>
+												<h3><?php the_title() ?> </h3>
+												<div class="volume-number">
+													<p><?php foreach($theVolume as $user){
+																		$s= $user['user_firstname']." ".$user['user_lastname'];
+																		if($user!==end($theVolume)){
+																			$s.=", ";
+																		}
+																echo $s;
+															};
+															?></p>
+												</div><?php
+											}
 
-			<?php commonplace_paging_nav(); ?>
+										}
+										else{
+											echo "There are no volumes";
+										}
+										?>
 
-		<?php else : ?>
+									<?php commonplace_paging_nav(); ?>
 
-			<?php get_template_part( 'content', 'none' ); ?>
+								<?php else : ?>
 
-		<?php endif; ?>
+									<?php get_template_part( 'content', 'none' ); ?>
+
+								<?php endif; ?>
 
 		</main><!-- #main -->
 	</div><!-- #primary -->
