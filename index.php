@@ -11,6 +11,11 @@
  * @package commonplace
  */
 
+
+/* Helllllllo Sam */
+
+
+
 get_header(); ?>
 <h1>Index.php</h1>
 	<div id="primary" class="content-area">
