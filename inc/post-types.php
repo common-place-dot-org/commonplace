@@ -21,6 +21,46 @@ function create_post_types() {
 			'menu_icon' => 'dashicons-book' 
 		)
 	);
+	/*
+	register_taxonomy( 'issue_number', 'issue', 
+		array(
+			'label' => 'Issue Number',
+			'labels' => array(
+				'name' => 'Issue Numbers',
+				'singular_name' => 'Issue Number',
+				'search_items' => 'Search Issue Numbers',
+				'edit_item' => 'Edit Issue Number',
+				'view_item' => 'Issue Number.viewitem',
+				'update_item' => 'Update Issue Number',
+				'add_new_item' => 'Add new Issue Number',
+				'new_item_name' => 'Issue Number.newitemname'
+			),
+			'public' => true,
+			'hierarchical' => true
+		)
+	);
+	*/
+	register_taxonomy( 'issue_tag', 'issue', 
+		array(
+			'label' => 'Issue Tag',
+			'labels' => array(
+				'name' => 'Issue Tags',
+				'singular_name' => 'Issue Tag',
+				'search_items' => 'Search Issue Tags',
+				'edit_item' => 'Edit Issue Tags',
+				'view_item' => 'Issue Tag.viewitem',
+				'update_item' => 'Update Issue Tag',
+				'add_new_item' => 'Add new Issue Tag',
+				'new_item_name' => 'Issue Tag.newitemname'
+			),
+			'public' => true,
+			'hierarchical' => false
+		)
+	);
+	
+	
+	
+	
 	register_post_type( 'article',
 		array(
 			'labels' => array(
@@ -42,23 +82,7 @@ function create_post_types() {
 			'menu_icon' => 'dashicons-media-text'  
 		)
 	);
-	register_taxonomy( 'volume', 'issue', 
-		array(
-			'label' => 'Volumes',
-			'labels' => array(
-				'name' => 'Volumes',
-				'singular_name' => 'Volume',
-				'search_items' => 'Search Volumes',
-				'edit_item' => 'Edit Volume',
-				'view_item' => 'Volume.viewitem',
-				'update_item' => 'Update Volume',
-				'add_new_item' => 'Add new Volume',
-				'new_item_name' => 'Volume.newitemname'
-			),
-			'public' => true,
-			'hierarchical' => false
-		)
-	);
+	
 	register_taxonomy( 'column', 'article', 
 		array(
 			'label' => 'Columns',
