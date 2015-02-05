@@ -12,7 +12,6 @@ add_theme_support( 'post-thumbnails' );
 
 /*-------------------------------------*/
 
-include "citation.php"; //Contains functions to generate citations
 /**
  * Set the content width based on the theme's design and stylesheet.
  */
