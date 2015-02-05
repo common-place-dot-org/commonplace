@@ -85,26 +85,26 @@ function article_contextual_help($contextual_help, $screen_id, $screen){
 
 function article_taxonomies(){
   $label1=array(
-    'name'              => _x( ' Article Topics', 'taxonomy general name' ),
-    'singular_name'     => _x( 'Article Topic', 'taxonomy singular name' ),
-    'search_items'      => __( 'Search Article Topics' ),
-    'all_items'         => __( 'All Article Topics' ),
-    'parent_item'       => __( 'Parent Article Topic' ),
-    'parent_item_colon' => __( 'Parent Article Topic:' ),
-    'edit_item'         => __( 'Edit Article Topic' ),
-    'update_item'       => __( 'Update Article Topic' ),
-    'add_new_item'      => __( 'Add New Article Topic' ),
-    'new_item_name'     => __( 'New Article Topic' ),
-    'menu_name'         => __( 'Article Topics' ),
+    'name'              => _x( ' Issues', 'taxonomy general name' ),
+    'singular_name'     => _x( 'Issue', 'taxonomy singular name' ),
+    'search_items'      => __( 'Search Issues' ),
+    'all_items'         => __( 'All Issues' ),
+    'parent_item'       => __( 'Parent Issue' ),
+    'parent_item_colon' => __( 'Parent Issue:' ),
+    'edit_item'         => __( 'Edit Issue' ),
+    'update_item'       => __( 'Update Issue' ),
+    'add_new_item'      => __( 'Add New Issue' ),
+    'new_item_name'     => __( 'New Issue' ),
+    'menu_name'         => __( 'Issues' ),
   );
   $tax1=array(
     'labels'=>$label1,
-    'hierarchical'=>false
+    'hierarchical'=>true
     );
 
-  register_taxonomy('Topics','article', $tax1);
+  register_taxonomy('Issues','article', $tax1);
 
-  $label2=array(
+  /*$label2=array(
     'name'              => _x( ' Article Designs', 'taxonomy general name' ),
     'singular_name'     => _x( 'Article Design', 'taxonomy singular name' ),
     'search_items'      => __( 'Search Article Designs' ),
@@ -122,7 +122,7 @@ function article_taxonomies(){
     'hierarchical'=>false
     );
 
-    register_taxonomy('Designs','article', $tax2);
+    register_taxonomy('Designs','article', $tax2); */
 };
 
 add_action('init','article_taxonomies',0);

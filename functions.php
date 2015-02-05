@@ -12,8 +12,6 @@ add_theme_support( 'post-thumbnails' );
 
 /*-------------------------------------*/
 
-include "custom-post.php"; //Contains add on for article custom post type
-
 include "citation.php"; //Contains functions to generate citations
 /**
  * Set the content width based on the theme's design and stylesheet.
@@ -147,3 +145,8 @@ require get_template_directory() . '/inc/jetpack.php';
  * Load Custom Post types.
  */
 require get_template_directory() . '/inc/post-types.php';
+
+/**
+* Generates citations
+*/
+require get_template_directory() . '/inc/citation.php';
