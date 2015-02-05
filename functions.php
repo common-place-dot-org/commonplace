@@ -145,3 +145,7 @@ require get_template_directory() . '/inc/jetpack.php';
  * Load Custom Post types.
  */
 require get_template_directory() . '/inc/post-types.php';
+
+function chicago_citation($post){
+	echo the_field('last_name',$post->ID);echo "&#46"; echo the_field('first_name',$post->ID);
+}

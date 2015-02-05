@@ -25,6 +25,9 @@ get_header(); ?>
 
 		<?php endwhile; // end of the loop. ?>
 
+		<h1>Chicago Citation</h1>
+		<p><?php chicago_citation(get_post()); ?> </p>
+
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
