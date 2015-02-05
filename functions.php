@@ -12,7 +12,9 @@ add_theme_support( 'post-thumbnails' );
 
 /*-------------------------------------*/
 
-include "custom-post.php";
+include "custom-post.php"; //Contains add on for article custom post type
+
+include "citation.php"; //Contains functions to generate citations
 /**
  * Set the content width based on the theme's design and stylesheet.
  */
@@ -145,7 +147,3 @@ require get_template_directory() . '/inc/jetpack.php';
  * Load Custom Post types.
  */
 require get_template_directory() . '/inc/post-types.php';
-
-function chicago_citation($post){
-	echo the_field('last_name',$post->ID);echo "&#46"; echo the_field('first_name',$post->ID);
-}
