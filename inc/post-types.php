@@ -23,7 +23,7 @@ function create_post_types() {
 		)
 	);
 
-	register_taxonomy( 'column', 'article',
+	/*register_taxonomy( 'column', 'article',
 		array(
 			'label' => 'Columns',
 			'labels' => array(
@@ -39,18 +39,18 @@ function create_post_types() {
 			'public' => true,
 			'hierarchical' => true
 		)
-	);
+	);*/
 	register_taxonomy( 'topic', 'article',
 		array(
-			'label' => 'Topic Tags',
+			'label' => 'Topic',
 			'labels' => array(
-				'name' => 'Topic Tags',
-				'singular_name' => 'Topic Tag',
-				'search_items' => 'Search Topic Tags',
+				'name' => 'Topic',
+				'singular_name' => 'Topic',
+				'search_items' => 'Search Topic',
 				'edit_item' => 'Edit  ',
 				'view_item' => 'Topics.viewitem',
-				'update_item' => 'Update Topic Tag',
-				'add_new_item' => 'Add new Topic Tag',
+				'update_item' => 'Update Topic',
+				'add_new_item' => 'Add new Topic',
 				'new_item_name' => 'Topics.newitemname'
 			),
 			'public' => true,
