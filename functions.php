@@ -149,3 +149,8 @@ require get_template_directory() . '/inc/post-types.php';
 * Generates citations
 */
 require get_template_directory() . '/inc/citation.php';
+
+/**
+* Adds Select Featured Issue to Dashboard
+*/
+require get_template_directory() . '/inc/featured-issue.php';
