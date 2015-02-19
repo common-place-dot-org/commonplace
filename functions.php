@@ -153,4 +153,4 @@ require get_template_directory() . '/inc/citation.php';
 /**
 * Adds Select Featured Issue to Dashboard
 */
-require get_template_directory() . '/inc/featured-issue.php';
+//require get_template_directory() . '/inc/featured-issue.php';
