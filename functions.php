@@ -151,6 +151,12 @@ require get_template_directory() . '/inc/post-types.php';
 require get_template_directory() . '/inc/citation.php';
 
 /**
+<<<<<<< HEAD
 * Adds Select Featured Issue to Dashboard
 */
 //require get_template_directory() . '/inc/featured-issue.php';
+=======
+* Generates citations
+*/
+require get_template_directory() . '/inc/featured-issue.php';
+>>>>>>> origin/feature-issue
