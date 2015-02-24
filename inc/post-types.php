@@ -24,7 +24,7 @@ function create_post_types() {
 		)
 	);
 
-	/*register_taxonomy( 'column', 'article',
+	register_taxonomy( 'column', 'article',
 		array(
 			'label' => 'Columns',
 			'labels' => array(
@@ -40,7 +40,7 @@ function create_post_types() {
 			'public' => true,
 			'hierarchical' => true
 		)
-	);*/
+	);
 	register_taxonomy( 'topic', 'article',
 		array(
 			'label' => 'Topic',

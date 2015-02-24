@@ -103,3 +103,8 @@ require get_template_directory() . '/inc/citation.php';
 * Adds Select Featured Issue to Dashboard
 */
 require get_template_directory() . '/inc/featured-issue.php';
+
+/**
+* Requires article to have issue picked upon creation
+*/
+require get_template_directory() . '/inc/require-post-category.php';
