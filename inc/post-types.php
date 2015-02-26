@@ -77,6 +77,34 @@ function create_post_types() {
 		);
 
 	register_taxonomy('issue','article', $Issues);
+	
+	
+	
+	register_post_type( 'project',
+		array(
+			'labels' => array(
+				'name' => 'Projects',
+				'singular_name' => 'Project',
+				//'menu_name' => 'Search Columns',
+				//'name_admin_bar' => 'Edit  ',
+				//'all_items' => 'Column.viewitem',
+				'add_new' => 'New Project',
+				'add_new_item' => 'Add New Project',
+				'edit_item' => 'Edit Project',
+				//'new_item' => 'Column.newitemname',
+				'view_item' => 'View Project',
+				'search_items' => 'Search Projects'
+			),
+			'public' => true,
+			'supports' => array('title', 'thumbnail', 'excerpt'),
+			'has_archive' => true,
+			'menu_position' => 6,
+			'menu_icon' => 'dashicons-screenoptions'
+		)
+	);
+
+	
+	
 }
 add_action( 'init', 'create_post_types' );
 ?>
