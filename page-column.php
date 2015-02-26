@@ -13,17 +13,18 @@ get_header();
 ?>
 <div class="row">
 	<div class="col-sm-12">
-		
-	</div>
-</div>
-<div class="row">
-	<div class="col-sm-9">
 		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 			<h1><?php the_title()?></h1>
 			<?php the_content();?>
 		<?php endwhile; endif; ?>
+		<hr/>
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-9">
+		
 		<?php 		
-		$args = array(
+		$args = array(	
 			'post_type' => 'article',
 			'tax_query' => array(
 				array(
@@ -47,7 +48,7 @@ get_header();
 					<h3 class="article-title">
 						<a href="<?php the_permalink();?>"><?php the_title(); ?></a>
 					</h3>
-					<p class="article-author"><?php echo get_field( "author_name" );?></p>
+					<p class="article-author"><?php the_field('author_prefix');?> <?php the_field('author_first_name');?> <?php the_field('author_last_name');?> <?php the_field('author_suffix');?></p>
 					<div class="article-excerpt">
 						<?php the_excerpt();?>
 					</div>
