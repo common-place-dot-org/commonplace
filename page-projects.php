@@ -21,22 +21,27 @@ get_header();
 	</div>
 </div>
 <div class="row">
-	
 	<?php 
-	
-	// Go get all Projects with project_status == active
-	
-	// list them out. 
-	
-	
-	// get all projects with project_status == archived
-	
-	// list those out seperately. 
-	
-	
-	
+	function printProject(){
+		$projType = get_field('project_type');	
+		$projectLink = '#';
+		if ($projType == 'Site'){
+			$projectLink = get_field('project_link');
+		} elseif ($projType == 'Page') {
+			$projectLink = get_field('project_page');
+		} elseif ($projType == 'File'){
+			$arr = get_field('project_file');
+			$projectLink = $arr['url'];
+		}
+		
+		echo '<h3><a href="'. $projectLink .'">'. get_the_title().'</a></h3>';
+		echo '<a href="'.  $projectLink.'">';
+		the_post_thumbnail('post-thumbnail', array('class' => "attachment-$size img-responsive"));
+		echo '</a>';
+		echo '<div class="article-excerpt">'. the_excerpt() .'</div>';
+		print_r($thumb);
+	}
 	?>
-
 	<?php 		
 	$args = array(	
 		'post_type' => 'project',
@@ -46,20 +51,12 @@ get_header();
 	$loop = new WP_Query( $args );
 	while ( $loop->have_posts() ) : $loop->the_post();
 	?>
-	<div class="col-sm-4">	
-		<h3><a href="<?php the_permalink();?>"><?php the_title();?></a></h3>
-		<a href="<?php the_permalink();?>"><? the_post_thumbnail('post-thumbnail', array(
-				'class' => "attachment-$size img-responsive",
-		));?></a>
-		<div class="article-excerpt">
-			<?php the_excerpt();?>
+		<div class="col-sm-4">	
+			<?php printProject();?>
 		</div>
-	</div>
 	<?php endwhile;?>
 </div>
 <div class="row">	
-	
-	
 	<?php 		
 	$args = array(	
 		'post_type' => 'project',
@@ -69,17 +66,10 @@ get_header();
 	$loop = new WP_Query( $args );
 	while ( $loop->have_posts() ) : $loop->the_post();
 	?>
-	<div class="col-sm-3">	
-		<h3><a href="<?php the_permalink();?>"><?php the_title();?></a></h3>
-		<a href="<?php the_permalink();?>"><? the_post_thumbnail('post-thumbnail', array(
-				'class' => "attachment-$size img-responsive",
-		));?></a>
-		<div class="article-excerpt">
-			<?php the_excerpt();?>
+		<div class="col-sm-3">	
+			<?php printProject();?>
 		</div>
-	</div>
 	<?php endwhile;?>
-	
 </div>
 <?php 
 get_footer();
