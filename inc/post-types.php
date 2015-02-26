@@ -59,7 +59,7 @@ function create_post_types() {
 		)
 	);
 	$issue_labels=array(
-		'name'              => _x( ' Issues', 'taxonomy general name' ),
+		'name'              => _x( ' Issue', 'taxonomy general name' ),
 		'singular_name'     => _x( 'Issue', 'taxonomy singular name' ),
 		'search_items'      => __( 'Search Issues' ),
 		'all_items'         => __( 'All Issues' ),
@@ -76,7 +76,7 @@ function create_post_types() {
 		'hierarchical'=>true
 		);
 
-	register_taxonomy('Issues','article', $Issues);
+	register_taxonomy('issue','article', $Issues);
 }
 add_action( 'init', 'create_post_types' );
 ?>

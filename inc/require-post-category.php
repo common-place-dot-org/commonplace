@@ -40,7 +40,7 @@ function rpc_admin_footer_post_func(){
 		echo "<script>
 jQuery(function($){
 	$('#publish, #save-post').click(function(e){
-		if($('#taxonomy-Issues input:checked').length==0){
+		if($('#taxonomy-issue input:checked').length==0){
 			alert('" . __('Please select a Issue Number before publishing this post.', 'require-post-category') . "');
 			e.stopImmediatePropagation();
 			return false;

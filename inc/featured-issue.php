@@ -13,7 +13,7 @@ add_action('wp_dashboard_setup','featured_issue');
 /* COMMENT: Try not using global wpdb */
 function featured_issue_display(){
  global $wpdb;
-$query="SELECT term_id FROM wp_term_taxonomy WHERE taxonomy='Issues' AND count<>0";
+$query="SELECT term_id FROM wp_term_taxonomy WHERE taxonomy='issue' AND count<>0";
 $issues=$wpdb->get_col($query);
 echo "<form method='post' action=".$_SERVER['PHP_SELF']."><select name='choosen_issue'>";
  foreach($issues as $issue_termid){
