@@ -17,13 +17,13 @@ Please see the appropriate guide for your environment of choice:
 In your Gemfile you need to add the `bootstrap-sass` gem, and ensure that the `sass-rails` gem is present - it is added to new Rails applications by default.
 
 ```ruby
-gem 'bootstrap-sass', '~> 3.3.2'
+gem 'bootstrap-sass', '~> 3.3.3'
 gem 'sass-rails', '>= 3.2'
 ```
 
 `bundle install` and restart your server to make the files available through the pipeline.
 
-Import Bootstrap styles in `app/assets/stylesheets/application.css.scss`:
+Import Bootstrap styles in `app/assets/stylesheets/application.scss`:
 
 ```scss
 // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
@@ -33,11 +33,11 @@ Import Bootstrap styles in `app/assets/stylesheets/application.css.scss`:
 
 `bootstrap-sprockets` must be imported before `bootstrap` for the icon fonts to work.
 
-Make sure the file has `.css.scss` extension (or `.css.sass` for Sass syntax). If you have just generated a new Rails app,
+Make sure the file has `.scss` extension (or `.sass` for Sass syntax). If you have just generated a new Rails app,
 it may come with a `.css` file instead. If this file exists, it will be served instead of Sass, so rename it:
 
 ```console
-$ mv app/assets/stylesheets/application.css app/assets/stylesheets/application.css.scss
+$ mv app/assets/stylesheets/application.css app/assets/stylesheets/application.scss
 ```
 
 Then, remove all the `//= require` and `//= require_tree` statements from the file. Instead, use `@import` to import Sass files.
@@ -50,6 +50,11 @@ Require Bootstrap Javascripts in `app/assets/javascripts/application.js`:
 //= require jquery
 //= require bootstrap-sprockets
 ```
+
+`bootstrap-sprockets` and `bootstrap` [should not both be included](https://github.com/twbs/bootstrap-sass/issues/829#issuecomment-75153827) in `application.js`.
+
+`bootstrap-sprockets` provides individual Bootstrap Javascript files (`alert.js` or `dropdown.js`, for example), while
+`bootstrap` provides a concatenated file containing all Bootstrap Javascripts.
 
 #### Bower with Rails
 
@@ -67,7 +72,7 @@ config.assets.precompile << %r(bootstrap-sass/assets/fonts/bootstrap/[\w-]+\.(?:
 ::Sass::Script::Number.precision = [8, ::Sass::Script::Number.precision].max
 ```
 
-Replace Bootstrap `@import` statements in `application.css.scss` with:
+Replace Bootstrap `@import` statements in `application.scss` with:
 
 ```scss
 $icon-font-path: "bootstrap-sass/assets/fonts/bootstrap/";
@@ -241,7 +246,7 @@ When using bootstrap-sass with Compass, Sprockets, or Mincer, you **must** impor
 
 ### Sass
 
-Import Bootstrap into a Sass file (for example, application.css.scss) to get all of Bootstrap's styles, mixins and variables!
+Import Bootstrap into a Sass file (for example, application.scss) to get all of Bootstrap's styles, mixins and variables!
 
 ```scss
 @import "bootstrap";
@@ -265,7 +270,19 @@ $navbar-default-color: $light-orange;
 
 ## Version
 
-`bootstrap-sass` version reflects the upstream version, with an additional number for Sass-specific changes.
+Bootstrap for Sass version may differ from the upstream version in the last number, known as
+[MINOR](http://semver.org/spec/v2.0.0.html). The minor version may be ahead of the corresponding upstream minor.
+This happens when we need to release Sass-specific changes.
+
+Before v3.3.2, Bootstrap for Sass version used to reflect the upstream version, with an additional number for
+Sass-specific changes. This was changed due to Bower and npm compatibility issues.
+
+The upstream versions vs the Bootstrap for Sass versions are:
+
+| Upstream |    Sass |
+|---------:|--------:|
+|    3.3.2 |   3.3.3 |
+| <= 3.3.1 | 3.3.1.x |
 
 Always refer to [CHANGELOG.md](/CHANGELOG.md) when upgrading.
 
@@ -295,7 +312,7 @@ To convert a specific branch or version, pass the branch name or the commit hash
 The latest converter script is located [here][converter] and does the following:
 
 * Converts upstream bootstrap LESS files to its matching SCSS file.
-* Copies all upstream JavaScript into `assets/javascripts/bootstrap`, an Sprockets manifest at `assets/javascripts/bootstrap-sprockets.js`, and a concatenation at `assets/javascripts/bootstrap.js`.
+* Copies all upstream JavaScript into `assets/javascripts/bootstrap`, a Sprockets manifest at `assets/javascripts/bootstrap-sprockets.js`, and a concatenation at `assets/javascripts/bootstrap.js`.
 * Copies all upstream font files into `assets/fonts/bootstrap`.
 * Sets `Bootstrap::BOOTSTRAP_SHA` in [version.rb][version] to the branch sha.
 
@@ -316,7 +333,7 @@ and a [significant number of other contributors][contrib].
 
 ## You're in good company
 bootstrap-sass is used to build some awesome projects all over the web, including
-[Diaspora](http://diasporaproject.org/), [rails_admin](https://github.com/sferik/rails_admin),
+[Diaspora](https://diasporafoundation.org/), [rails_admin](https://github.com/sferik/rails_admin),
 Michael Hartl's [Rails Tutorial](http://railstutorial.org/), [gitlabhq](http://gitlabhq.com/) and
 [kandan](http://kandanapp.com/).
 
