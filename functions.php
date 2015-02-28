@@ -33,6 +33,7 @@ function gazette_setup() {
 endif; // commonplace_setup
 add_action( 'after_setup_theme', 'gazette_setup' );
 
+
 function gazette_widgets_init() {
 	register_sidebar( array(
 		'name'          => __( 'Sidebar', 'commonplace' ),
@@ -116,8 +117,3 @@ require get_template_directory() . '/inc/featured-issue.php';
 * Requires article to have issue picked upon creation
 */
 require get_template_directory() . '/inc/require-post-category.php';
-
-/**
-* Changes HTML of Images from Media Library
-*/
-require get_template_directory() . '/inc/images.php';

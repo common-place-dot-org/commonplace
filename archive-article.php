@@ -54,15 +54,20 @@ get_header(); ?>
 					<th>Column</th>
 					<th>Author</th>
 				</tr>
+			<?php /* Start the Loop */ ?>
 			<?php while ( have_posts() ) : the_post(); ?>
+
 				<tr>
 					<td>is#</td>
 					<td><?php the_title();?></td>
 					<td>col</td>
 					<td><?php the_field('author_first_name');?> <?php the_field('author_last_name');?></td>
 				</tr>
+		
+
+				
 			<?php endwhile; ?>
-			</table>
+
 			<?php commonplace_paging_nav(); ?>
 
 		<?php else : ?>

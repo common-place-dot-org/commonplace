@@ -9,28 +9,23 @@ get_header(); ?>
 <div id="primary" class="content-area">
 	<main id="main" class="site-main" role="main">
 		<?php while ( have_posts() ) : the_post(); ?>
-		
 			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 				<header class="entry-header">
-					<ol class="breadcrumb">
-						<li>
-							Issue 
-							<?php 
-								$thisPost = get_the_ID();
-								echo get_the_term_list($thisPost, 'issue');
-								echo ' ';
-								$terms = get_the_terms($post->ID,'issue');
-									foreach ($terms as $term) {
-									echo "$term->description";
-								}
-							?>
-						</li>
-						<li>
-							<?php echo get_the_term_list($thisPost, 'column'); ?>
-						</li>
-					</ol>
 					<h1 class="entry-title"><?php the_title(); ?></h1>
-					<p><?php the_field('author_prefix');?> <?php the_field('author_first_name');?> <?php the_field('author_last_name');?> <?php the_field('author_suffix');?></p>
+					<div class="entry-meta">
+						Issue:
+						<?php
+							$thisPost = get_the_ID();
+							echo get_the_term_list($thisPost, 'issue');
+							echo ' : ';
+							$terms = get_the_terms($post->ID,'issue');
+								foreach ($terms as $term) {
+								echo "$term->description";
+							}
+						?>
+						<p><?php the_field('author_prefix');?> <?php the_field('author_first_name');?> <?php the_field('author_last_name');?> <?php the_field('author_suffix');?></p>
+						<hr/>					
+					</div><!-- .entry-meta -->
 				</header><!-- .entry-header -->
 				<div class="entry-excerpt">
 					<div class="well">
@@ -42,6 +37,9 @@ get_header(); ?>
 						<div class="entry-content">
 							<?php the_content(); ?>
 						</div><!-- .entry-content -->
+					</div>
+					<div class="col-sm-6">
+						x
 					</div>
 				</div>		
 			</article><!-- #post-## -->
