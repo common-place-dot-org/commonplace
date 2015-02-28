@@ -1794,7 +1794,7 @@ abbr[data-original-title] {
 blockquote {
   padding: 10px 20px;
   margin: 0 0 20px;
-  font-size: 17.5px;
+  font-size: 21px;
   border-left: 5px solid #eeeeee;
 }
 blockquote p:last-child,
@@ -5050,7 +5050,7 @@ tbody.collapse.in {
   display: inline-block;
 }
 .breadcrumb > li + li:before {
-  content: "/\00a0";
+  content: /\00a0;
   padding: 0 5px;
   color: #cccccc;
 }
@@ -7121,4 +7121,58 @@ button.close {
   .hidden-print {
     display: none !important;
   }
+}
+/* Scss Document */
+/* ******************
+
+	Article Page
+
+*/
+.single-article figure.alignright {
+  height: 0;
+}
+.single-article figure.alignright .fig-wrap {
+  position: relative;
+  left: 100%;
+  margin-left: 30px;
+}
+.single-article figure.alignright .fig-wrap figcaption {
+  padding-top: .5em;
+}
+.single-article figure.alignnone {
+  height: 0;
+}
+.single-article figure.alignnone .fig-wrap {
+  position: relative;
+  left: 100%;
+  margin-left: 30px;
+}
+.single-article figure.alignnone .fig-wrap figcaption {
+  padding-top: .5em;
+}
+.single-article blockquote {
+  padding: 0;
+  margin: 0;
+  height: 0;
+}
+.single-article blockquote * {
+  position: relative;
+  left: 100%;
+  margin-left: 30px;
+}
+.single-article .gallery .gallery-item {
+  float: left;
+}
+.single-article .gallery .gallery-item .gallery-item-wrap {
+  padding: 15px;
+}
+.single-article .gallery .gallery-item img {
+  width: 100%;
+  height: auto;
+}
+.single-article .gallery .gallery-item:first-child .gallery-item-wrap {
+  padding-left: 0;
+}
+.single-article .gallery .gallery-item:last-child .gallery-item-wrap {
+  padding-right: 0;
 }

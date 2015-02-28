@@ -43,9 +43,6 @@ get_header(); ?>
 							<?php the_content(); ?>
 						</div><!-- .entry-content -->
 					</div>
-					<div class="col-sm-6">
-						x
-					</div>
 				</div>		
 			</article><!-- #post-## -->
 			
