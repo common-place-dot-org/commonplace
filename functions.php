@@ -120,4 +120,4 @@ require get_template_directory() . '/inc/require-post-category.php';
 /**
 * Changes HTML of Images from Media Library
 */
-require get_template_directory() . '/inc/images.php';
+ require get_template_directory() . '/inc/images.php';
