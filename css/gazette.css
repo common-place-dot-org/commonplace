@@ -7128,37 +7128,87 @@ button.close {
 	Article Page
 
 */
-.single-article figure.alignright {
-  height: 0;
+#main {
+  padding: 50px;
+  background-color: white;
+  border-radius: 4px;
 }
-.single-article figure.alignright .fig-wrap {
-  position: relative;
-  left: 100%;
-  margin-left: 30px;
+
+.single-article {
+  	/*
+  	blockquote {
+  		padding:0;
+  		margin:0;		
+  		height:0;
+  		border:none;
+  
+  		* {
+  			position:relative;
+  			left:100%;
+  			margin-left:$grid-gutter-width;	
+  		}
+  
+  		&.center {
+  
+  			width:150%;
+  			background-color: yellow;
+  			position: relative;
+  			left: 25%;
+  			margin: 2em 0;
+  			text-align: center;
+  
+  			height: inherit;
+  			* {
+  				left:0;
+  				margin-left: 0;
+  			}
+  		}
+  		
+  	}
+  	*/
 }
-.single-article figure.alignright .fig-wrap figcaption {
-  padding-top: .5em;
+.single-article .entry-content h1,
+.single-article .entry-content h2,
+.single-article .entry-content h3,
+.single-article .entry-content h4,
+.single-article .entry-content h5,
+.single-article .entry-content h6,
+.single-article .entry-content p,
+.single-article .entry-content pre,
+.single-article .entry-content ul,
+.single-article .entry-content ol,
+.single-article .entry-content figure {
+  float: left;
+  width: 47%;
+  clear: left;
 }
-.single-article figure.alignnone {
-  height: 0;
-}
-.single-article figure.alignnone .fig-wrap {
-  position: relative;
-  left: 100%;
-  margin-left: 30px;
-}
-.single-article figure.alignnone .fig-wrap figcaption {
-  padding-top: .5em;
-}
-.single-article blockquote {
-  padding: 0;
+.single-article .entry-content figure.alignone,
+.single-article .entry-content figure.alignright,
+.single-article .entry-content blockquote {
+  float: right;
+  width: 47%;
   margin: 0;
-  height: 0;
+  clear: right;
+  margin-bottom: 6%;
 }
-.single-article blockquote * {
-  position: relative;
-  left: 100%;
-  margin-left: 30px;
+.single-article .entry-content figure.alignone p,
+.single-article .entry-content figure.alignright p,
+.single-article .entry-content blockquote p {
+  float: none;
+  width: auto;
+}
+.single-article .entry-content blockquote.center {
+  float: left;
+  width: 90%;
+  text-align: center;
+  margin: 6% auto;
+}
+.single-article .entry-content figure figcaption {
+  padding: .5em 0;
+}
+.single-article .gallery {
+  float: left;
+  clear: both;
 }
 .single-article .gallery .gallery-item {
   float: left;
@@ -7166,13 +7216,20 @@ button.close {
 .single-article .gallery .gallery-item .gallery-item-wrap {
   padding: 15px;
 }
-.single-article .gallery .gallery-item img {
+.single-article .gallery .gallery-item .gallery-item-wrap .gallery-icon img {
   width: 100%;
   height: auto;
+}
+.single-article .gallery .gallery-item .gallery-item-wrap .gallery-caption {
+  padding-top: .5em;
 }
 .single-article .gallery .gallery-item:first-child .gallery-item-wrap {
   padding-left: 0;
 }
 .single-article .gallery .gallery-item:last-child .gallery-item-wrap {
   padding-right: 0;
+}
+
+body {
+  background-image: url(../img/background.jpg);
 }

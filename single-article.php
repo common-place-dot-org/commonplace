@@ -38,7 +38,7 @@ get_header(); ?>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-sm-6">
+					<div class="col-sm-12">
 						<div class="entry-content">
 							<?php the_content(); ?>
 						</div><!-- .entry-content -->
