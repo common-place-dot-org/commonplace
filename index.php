@@ -16,84 +16,61 @@
 
 /* Helllooooo Sam part 2 */
 
-get_header(); ?>
-<h1>Index.php</h1>
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
 
-		<?php if ( have_posts() ) : ?>
+// The Query
+$the_query = get_post(9);
+		echo '<br><br><br><br>';
+		echo '<h1>' . $the_query->post_title . '</h1>';
+		echo '<br>';
+		echo '<p>'.$the_query->post_content.'</p>';
+		
+		//Slug Names for feature and roundtable
+		//Must change variable to correct slug upon changing the corresponding column slug
+		$feature_slug="feature";
+		$roundTable_slug="roundtable";
+		
+		$is_feature = false;
+		$is_roundTable = false;
+		echo 'REACHED $POST_COLUMNS';
+		$post_columns=wp_get_object_terms($the_query->ID,"column");
+		$post_issues=wp_get_object_terms($the_query->ID,"Issues");
+		echo $the_query->ID;
+		foreach($post_columns as $column){
+		echo $column->slug.'<br>';
+		}
+		foreach($post_columns as $column){
+			//Is this article a feature?
+			if($column->slug==$feature_slug){
+				$is_feature=true;
+				echo 'FEATURE=TRUE<br>';
+				foreach($post_issues as $issue){
+					$wpdb->query($wpdb->prepare("UPDATE cp_issue_columns SET Features = Features + 1 WHERE Issue = %s",$issue->name));
+				}
+			}
+			//Is this article a roundtable?
+			if($column->slug==$roundTable_slug){
+				$is_roundTable=true;
+				echo 'ROUNDTABLE=TRUE<br>';
+				foreach($post_issues as $issue){
+					$wpdb->query($wpdb->prepare("UPDATE cp_issue_columns SET RoundTable = RoundTable + 1 WHERE Issue = %s",$issue->name));
+				}
+			}
+			
+		}
+		global $wpdb;
+        $wpdb->query("CREATE TABLE IF NOT EXISTS cp_issue_columns (Issue varchar(255), Features int, RoundTable int)");
+		$num_rows=$wpdb->get_var("SELECT COUNT(*) FROM cp_issue_columns");
+		echo $num_rows;
+		if($num_rows<2){
+			$issues=get_terms('Issues',array('hide_empty'=>false));
+			foreach($issues as $issue){
+				$wpdb->query($wpdb->prepare("INSERT INTO cp_issue_columns(Issue,Features,RoundTable) VALUES(%s,0,0)",$issue->name));
+				
+			}
+		}
+		
+		
+		
+		
+?>
 
-			<?php /* Start the Loop */ ?>
-						<!-- Issue and Article Query  -->
-						<h1> Issue List </h1>
-						<?php
-								$args = array(
-									'post_type' => 'issue',
-									'tax-query' => array(
-										'taxonomy'=> 'Themes',
-										'field'=>'slug'
-										)
-								);
-								$issues=new WP_Query($args);
-								if($issues->have_posts()){
-									while($issues->have_posts()){
-										$issues->the_post();
-										$volume = get_post_meta( get_the_ID(), 'volume', true );
-										$theVolume = get_field("volume");
-										?>
-										<h3><?php the_title() ?> </h3>
-										<div class="volume-number">
-											<p><?php echo $volume." ".$theVolume ?></p>
-										</div><?php
-									}
-
-								}
-								else{
-									echo "There are no volumes";
-								}
-								?>
-
-								<?php
-										$args = array(
-											'post_type' => 'article'
-										);
-										$articles=new WP_Query($args);
-										if($articles->have_posts()){
-											while($articles->have_posts()){
-												$articles->the_post();
-												$volume = array(get_post_meta( get_the_ID(), 'authors', true ));
-												$theVolume = get_field("authors");
-												$s;
-												?>
-												<h3><?php the_title() ?> </h3>
-												<div class="volume-number">
-													<p><?php foreach($theVolume as $user){
-																		$s= $user['user_firstname']." ".$user['user_lastname'];
-																		if($user!==end($theVolume)){
-																			$s.=", ";
-																		}
-																echo $s;
-															};
-															?></p>
-												</div><?php
-											}
-
-										}
-										else{
-											echo "There are no volumes";
-										}
-										?>
-
-									<?php commonplace_paging_nav(); ?>
-
-								<?php else : ?>
-
-									<?php get_template_part( 'content', 'none' ); ?>
-
-								<?php endif; ?>
-
-		</main><!-- #main -->
-	</div><!-- #primary -->
-
-<?php get_sidebar(); ?>
-<?php get_footer(); ?>
