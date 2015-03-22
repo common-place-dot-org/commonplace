@@ -12,12 +12,14 @@
  */
 
 
-/* Helllllllo Sam */
+$featured_issue=$wpdb->get_var( "SELECT option_value FROM wp_options WHERE option_id=700");
+$feature_count=(int)($wpdb->get_var("SELECT option_value FROM wp_options WHERE option_id=701"));
+$roundtable_count=(int)($wpdb->get_var("SELECT option_value FROM wp_options WHERE option_id=702"));
 
-/* Helllooooo Sam part 2 */
-
+echo "Featured Issue: ".$featured_issue."<br>Feature Count: ".$feature_count."<br>RoundTable Count: ".$roundtable_count."<br><br>";
 
 // The Query
+?>
 $the_query = get_post(9);
 		echo '<br><br><br><br>';
 		echo '<h1>' . $the_query->post_title . '</h1>';
@@ -66,9 +68,6 @@ $the_query = get_post(9);
 		$featured_count=$wpdb->get_var($wpdb->prepare( "SELECT Features FROM cp_issue_columns WHERE Issue=%s",$choosen_issue));
 		echo var_dump($featured_count);
 		echo $featured_count;
-		if($feature_count>2){
-			echo "true";
-		}
 		
 		
 		
