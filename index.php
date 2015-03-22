@@ -29,8 +29,6 @@ $the_query = get_post(9);
 		$feature_slug="feature";
 		$roundTable_slug="roundtable";
 		
-		$is_feature = false;
-		$is_roundTable = false;
 		echo 'REACHED $POST_COLUMNS';
 		$post_columns=wp_get_object_terms($the_query->ID,"column");
 		$post_issues=wp_get_object_terms($the_query->ID,"Issues");
@@ -41,16 +39,12 @@ $the_query = get_post(9);
 		foreach($post_columns as $column){
 			//Is this article a feature?
 			if($column->slug==$feature_slug){
-				$is_feature=true;
-				echo 'FEATURE=TRUE<br>';
 				foreach($post_issues as $issue){
 					$wpdb->query($wpdb->prepare("UPDATE cp_issue_columns SET Features = Features + 1 WHERE Issue = %s",$issue->name));
 				}
 			}
 			//Is this article a roundtable?
 			if($column->slug==$roundTable_slug){
-				$is_roundTable=true;
-				echo 'ROUNDTABLE=TRUE<br>';
 				foreach($post_issues as $issue){
 					$wpdb->query($wpdb->prepare("UPDATE cp_issue_columns SET RoundTable = RoundTable + 1 WHERE Issue = %s",$issue->name));
 				}
@@ -67,6 +61,13 @@ $the_query = get_post(9);
 				$wpdb->query($wpdb->prepare("INSERT INTO cp_issue_columns(Issue,Features,RoundTable) VALUES(%s,0,0)",$issue->name));
 				
 			}
+		}
+		$choosen_issue='Issue 1';
+		$featured_count=$wpdb->get_var($wpdb->prepare( "SELECT Features FROM cp_issue_columns WHERE Issue=%s",$choosen_issue));
+		echo var_dump($featured_count);
+		echo $featured_count;
+		if($feature_count>2){
+			echo "true";
 		}
 		
 		

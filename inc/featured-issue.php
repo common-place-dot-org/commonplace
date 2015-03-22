@@ -37,10 +37,31 @@ function set_featured(){
 		if($featured_issue_set==NULL){
 			$make_featured_issue=$wpdb->prepare("INSERT INTO wp_options VALUES (700,'featured_issue',%s,'no')",$choosen_issue);
 			$wpdb->query($make_featured_issue);
+			
+			//Set feature article count
+			$featured_count=$wpdb->get_var($wpdb->prepare( "SELECT Features FROM cp_issue_columns WHERE Issue=%s",$choosen_issue));
+			$make_featured_count=$wpdb->prepare("INSERT INTO wp_options VALUES (701,'featured_count',%s,'no')",$featured_count);
+			$wpdb->query($make_featured_count);
+			
+			//Set round table article count
+			$featured_round=$wpdb->get_var($wpdb->prepare( "SELECT RoundTable FROM cp_issue_columns WHERE Issue=%s",$choosen_issue));
+			$make_featured_round=$wpdb->prepare("INSERT INTO wp_options VALUES (702,'featured_round',%s,'no')",$featured_round);
+			$wpdb->query($make_featured_round);
+			
 		}
 		else{
 			$update_featured_issue=$wpdb->prepare("UPDATE wp_options SET option_value=%s WHERE option_name='featured_issue'",$choosen_issue);
 			$wpdb->query($update_featured_issue);
+			
+			//Update feature article count
+			$featured_count=$wpdb->get_var($wpdb->prepare( "SELECT Features FROM cp_issue_columns WHERE Issue=%s",$choosen_issue));
+			$make_featured_issue=$wpdb->prepare("UPDATE wp_options SET option_value=%s WHERE option_name='featured_count'",$featured_count);
+			$wpdb->query($make_featured_issue);
+			
+			//Set round table article count
+			$featured_round=$wpdb->get_var($wpdb->prepare( "SELECT RoundTable FROM cp_issue_columns WHERE Issue=%s",$choosen_issue));
+			$make_featured_round=$wpdb->prepare("UPDATE wp_options SET option_value=%s WHERE option_name='featured_round'",$featured_round);
+			$wpdb->query($make_featured_round);
 		}
 	};
 }

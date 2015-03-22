@@ -8,8 +8,6 @@
 		$feature_slug="feature";
 		$roundTable_slug="roundtable";
 		
-		$is_feature = false;
-		$is_roundTable = false;
 		echo 'REACHED $POST_COLUMNS';
 		$post_columns=wp_get_object_terms($ID,"column");
 		$post_issues=wp_get_object_terms($ID,"Issues");
@@ -20,16 +18,12 @@
 		foreach($post_columns as $column){
 			//Is this article a feature?
 			if($column->slug==$feature_slug){
-				$is_feature=true;
-				echo 'FEATURE=TRUE<br>';
 				foreach($post_issues as $issue){
 					$wpdb->query($wpdb->prepare("UPDATE cp_issue_columns SET Features = Features + 1 WHERE Issue = %s",$issue->name));
 				}
 			}
 			//Is this article a roundtable?
 			if($column->slug==$roundTable_slug){
-				$is_roundTable=true;
-				echo 'ROUNDTABLE=TRUE<br>';
 				foreach($post_issues as $issue){
 					$wpdb->query($wpdb->prepare("UPDATE cp_issue_columns SET RoundTable = RoundTable + 1 WHERE Issue = %s",$issue->name));
 				}
