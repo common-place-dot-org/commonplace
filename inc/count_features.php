@@ -1,5 +1,7 @@
 <?php
   include 'ChromePhp.php';  ChromePhp::log('LOG');
+  change_homepage_template('homepage6.php');
+
   function add_issue_columns( $ID, $post ){
   ChromePhp::log('Hello console!');
   global $wpdb;
@@ -7,7 +9,7 @@
 		//Must change variable to correct slug upon changing the corresponding column slug
 		$feature_slug="feature";
 		$roundTable_slug="roundtable";
-		
+
 		echo 'REACHED $POST_COLUMNS';
 		$post_columns=wp_get_object_terms($ID,"column");
 		$post_issues=wp_get_object_terms($ID,"Issues");
@@ -28,7 +30,7 @@
 					$wpdb->query($wpdb->prepare("UPDATE cp_issue_columns SET RoundTable = RoundTable + 1 WHERE Issue = %s",$issue->name));
 				}
 			}
-			
+
 		}
 		global $wpdb;
         $wpdb->query("CREATE TABLE IF NOT EXISTS cp_issue_columns (Issue varchar(255), Features int, RoundTable int)");
@@ -38,11 +40,11 @@
 			$issues=get_terms('Issues',array('hide_empty'=>false));
 			foreach($issues as $issue){
 				$wpdb->query($wpdb->prepare("INSERT INTO cp_issue_columns(Issue,Features,RoundTable) VALUES(%s,0,0)",$issue->name));
-				
+
 			}
 		}
-		
-		
+
+
 
 };
 
