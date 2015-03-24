@@ -11,14 +11,14 @@
 
 		echo 'REACHED $POST_COLUMNS';
 		$post_columns=wp_get_object_terms($ID,"column");
-		$post_issues=wp_get_object_terms($ID,"Issues");
+		$post_issues=wp_get_object_terms($ID,"issue");
 		
 		//If table doesn't exist make table and fill rows
 		$wpdb->query("CREATE TABLE IF NOT EXISTS cp_issue_columns (Issue varchar(255), Features int, RoundTable int)");
 		$num_rows=$wpdb->get_var("SELECT COUNT(*) FROM cp_issue_columns");
 		echo $num_rows;
 		if($num_rows<2){
-			$issues=get_terms('Issues',array('hide_empty'=>false));
+			$issues=get_terms('issue',array('hide_empty'=>false));
 			foreach($issues as $issue){
 				$wpdb->query($wpdb->prepare("INSERT INTO cp_issue_columns(Issue,Features,RoundTable) VALUES(%s,0,0)",$issue->name));
 
