@@ -11,89 +11,38 @@
  * @package commonplace
  */
 
+$featured_issue=$wpdb->get_var( "SELECT option_value FROM wp_options WHERE option_id=700");
+$feature_count=(int)($wpdb->get_var("SELECT option_value FROM wp_options WHERE option_id=701"));
+$roundtable_count=(int)($wpdb->get_var("SELECT option_value FROM wp_options WHERE option_id=702"));
 
-/* Helllllllo Sam */
+echo "Featured Issue: ".$featured_issue."<br>Feature Count: ".$feature_count."<br>RoundTable Count: ".$roundtable_count."<br><br>";
 
-/* Helllooooo Sam part 2 */
+$featured_count=3;
+$featured_round=2;
+if($featured_count<=3){
+  if($featured_round>0){
+    echo "featured <=3 with round";
+  }
+  else{
+    echo "featured <=3";
+  }
+}
+else if(3<$featured_count || $featured_count<=6){
+  if($featured_round>0){
+    echo "featured >=6 with round";
+  }
+  else{
+    echo "featured >=6";
+  }
+}
+  else{
+    if($featured_round>0){
+      echo "featured >7 with round";
+    }
+    else{
+      echo "featured >7";
+    }
+  }
+  
 
-get_header(); ?>
-<h1>Index.php</h1>
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
-
-		<?php if ( have_posts() ) : ?>
-
-			<?php /* Start the Loop */ ?>
-						<!-- Issue and Article Query  -->
-						<h1> Issue List </h1>
-						<?php
-								$args = array(
-									'post_type' => 'issue',
-									'tax-query' => array(
-										'taxonomy'=> 'Themes',
-										'field'=>'slug'
-										)
-								);
-								$issues=new WP_Query($args);
-								if($issues->have_posts()){
-									while($issues->have_posts()){
-										$issues->the_post();
-										$volume = get_post_meta( get_the_ID(), 'volume', true );
-										$theVolume = get_field("volume");
-										?>
-										<h3><?php the_title() ?> </h3>
-										<div class="volume-number">
-											<p><?php echo $volume." ".$theVolume ?></p>
-										</div><?php
-									}
-
-								}
-								else{
-									echo "There are no volumes";
-								}
-								?>
-
-								<?php
-										$args = array(
-											'post_type' => 'article'
-										);
-										$articles=new WP_Query($args);
-										if($articles->have_posts()){
-											while($articles->have_posts()){
-												$articles->the_post();
-												$volume = array(get_post_meta( get_the_ID(), 'authors', true ));
-												$theVolume = get_field("authors");
-												$s;
-												?>
-												<h3><?php the_title() ?> </h3>
-												<div class="volume-number">
-													<p><?php foreach($theVolume as $user){
-																		$s= $user['user_firstname']." ".$user['user_lastname'];
-																		if($user!==end($theVolume)){
-																			$s.=", ";
-																		}
-																echo $s;
-															};
-															?></p>
-												</div><?php
-											}
-
-										}
-										else{
-											echo "There are no volumes";
-										}
-										?>
-
-									<?php commonplace_paging_nav(); ?>
-
-								<?php else : ?>
-
-									<?php get_template_part( 'content', 'none' ); ?>
-
-								<?php endif; ?>
-
-		</main><!-- #main -->
-	</div><!-- #primary -->
-
-<?php get_sidebar(); ?>
-<?php get_footer(); ?>
+?>
