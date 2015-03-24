@@ -60,6 +60,8 @@ $query_round = new WP_Query( $args_round );
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
 
+<?php get_header(); ?>
+
 <body>
 <div class="container"> 
 	<!-- 1-3 Features - - - - - - - - -  - - - - - -->
@@ -141,3 +143,5 @@ $query_round = new WP_Query( $args_round );
 		</div>
 	</div>
 </body>
+
+<?php get_footer(); ?>

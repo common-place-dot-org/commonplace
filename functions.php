@@ -119,4 +119,10 @@ require get_template_directory() . '/inc/require-post-category.php';
 */
 require get_template_directory() . '/inc/count_features.php';
 
+/*Adds images*/
+
 require get_template_directory() . '/inc/images.php';
+
+/*Adds option to filter articles by issue*/
+
+require get_template_directory() . '/inc/filter_by_taxonomy.php';

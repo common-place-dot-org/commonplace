@@ -1,6 +1,6 @@
 <?php
 /*
-* Template Name: Homepage 3
+* Template Name: Homepage 3 round
 * Description: Homepage for 3 features and roundtables
 */
 $current_issue_name=$wpdb->get_var("SELECT option_value FROM wp_options WHERE option_name='featured_issue'");
@@ -61,6 +61,9 @@ $query_round = new WP_Query( $args_round );
 </head>
 
 <body>
+
+<?php get_header(); ?>
+
 <div class="container"> 
 	<!-- 1-3 Features - - - - - - - - -  - - - - - -->
 	
@@ -121,3 +124,5 @@ $query_round = new WP_Query( $args_round );
 		</div>
 	</div>
 </body>
+
+<?php get_footer(); ?>

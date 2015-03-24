@@ -41,6 +41,8 @@ $query = new WP_Query( $args );
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
 
+<?php get_header(); ?>
+
 <body>
 <div class="container"> 
 	<!-- 1-3 Features - - - - - - - - -  - - - - - -->
@@ -70,3 +72,5 @@ $query = new WP_Query( $args );
 		</section>
 	</div>
 </body>
+
+<?php get_footer(); ?>
