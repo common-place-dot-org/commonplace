@@ -118,3 +118,5 @@ require get_template_directory() . '/inc/require-post-category.php';
 /*Requires article to have issue picked upon creation
 */
 require get_template_directory() . '/inc/count_features.php';
+
+require get_template_directory() . '/inc/images.php';
