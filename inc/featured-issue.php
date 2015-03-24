@@ -9,8 +9,6 @@ function featured_issue(){
   );
 }
 
-change_homepage_template('homepage6.php');
-
 add_action('wp_dashboard_setup','featured_issue');
 
 /* Creates form with current article issues */
@@ -53,6 +51,30 @@ function set_featured(){
 			$make_featured_round=$wpdb->prepare("INSERT INTO wp_options VALUES (702,'featured_round',%s,'no')",$featured_round);
 			$wpdb->query($make_featured_round);
 
+			if($featured_count<=3){
+			  if($featured_round>0){
+				change_homepage_template('homepage3_round.php');
+			  }
+			  else{
+				change_homepage_template('homepage3.php');
+			  }
+			}
+			else if(3<$featured_count && $featured_count<=6){
+			  if($featured_round>0){
+				change_homepage_template('homepage6_round.php');
+			  }
+			  else{
+				change_homepage_template('homepage6.php');
+			  }
+			}
+			  else{
+				if($featured_round>0){
+				  change_homepage_template('homepage7.php');
+				}
+				else{
+				  change_homepage_template('homepage7_round.php');
+				}
+			  }
 
 		}
 		else{
@@ -68,6 +90,33 @@ function set_featured(){
 			$featured_round=$wpdb->get_var($wpdb->prepare( "SELECT RoundTable FROM cp_issue_columns WHERE Issue=%s",$choosen_issue));
 			$make_featured_round=$wpdb->prepare("UPDATE wp_options SET option_value=%s WHERE option_name='featured_round'",$featured_round);
 			$wpdb->query($make_featured_round);
+			
+			//Set Homepage Template
+			if($featured_count<4){
+			  if($featured_round>0){
+				change_homepage_template('homepage3_round.php');
+			  }
+			  else{
+				change_homepage_template('homepage3.php');
+			  }
+			}
+			else if(3<$featured_count && $featured_count<7){
+			  if($featured_round>0){
+				change_homepage_template('homepage6_round.php');
+				
+			  }
+			  else{
+				change_homepage_template('homepage6.php');
+			  }
+			}
+			  else{
+				if($featured_round>0){
+				  change_homepage_template('homepage7_round.php');
+				}
+				else{
+				  change_homepage_template('homepage7.php');
+				}
+			  }
 		}
 	};
 }

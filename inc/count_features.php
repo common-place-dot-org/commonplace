@@ -1,6 +1,5 @@
 <?php
   include 'ChromePhp.php';  ChromePhp::log('LOG');
-  change_homepage_template('homepage6.php');
 
   function add_issue_columns( $ID, $post ){
   ChromePhp::log('Hello console!');
@@ -13,7 +12,27 @@
 		echo 'REACHED $POST_COLUMNS';
 		$post_columns=wp_get_object_terms($ID,"column");
 		$post_issues=wp_get_object_terms($ID,"Issues");
-		echo $ID;
+		
+		//If table doesn't exist make table and fill rows
+		$wpdb->query("CREATE TABLE IF NOT EXISTS cp_issue_columns (Issue varchar(255), Features int, RoundTable int)");
+		$num_rows=$wpdb->get_var("SELECT COUNT(*) FROM cp_issue_columns");
+		echo $num_rows;
+		if($num_rows<2){
+			$issues=get_terms('Issues',array('hide_empty'=>false));
+			foreach($issues as $issue){
+				$wpdb->query($wpdb->prepare("INSERT INTO cp_issue_columns(Issue,Features,RoundTable) VALUES(%s,0,0)",$issue->name));
+
+			}
+		}
+		
+		//If issue is not in cp_issue_columns
+		foreach($post_issues as $issue){
+				$issue_gotten=$wpdb->query($wpdb->prepare("INSERT INTO cp_issue_columns(Issue,Features,RoundTable) VALUES(%s,0,0)",$issue->name));
+				if(isset($issue_gotten)==false){
+					$wpdb->query($wpdb->prepare("INSERT INTO cp_issue_columns(Issue,Features,RoundTable) VALUES(%s,0,0)",$issue->name));
+				}
+		}
+		
 		foreach($post_columns as $column){
 		echo $column->slug.'<br>';
 		}
@@ -31,17 +50,6 @@
 				}
 			}
 
-		}
-		global $wpdb;
-        $wpdb->query("CREATE TABLE IF NOT EXISTS cp_issue_columns (Issue varchar(255), Features int, RoundTable int)");
-		$num_rows=$wpdb->get_var("SELECT COUNT(*) FROM cp_issue_columns");
-		echo $num_rows;
-		if($num_rows<2){
-			$issues=get_terms('Issues',array('hide_empty'=>false));
-			foreach($issues as $issue){
-				$wpdb->query($wpdb->prepare("INSERT INTO cp_issue_columns(Issue,Features,RoundTable) VALUES(%s,0,0)",$issue->name));
-
-			}
 		}
 
 

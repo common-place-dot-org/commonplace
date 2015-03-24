@@ -11,7 +11,6 @@
  * @package commonplace
  */
 
-
 $featured_issue=$wpdb->get_var( "SELECT option_value FROM wp_options WHERE option_id=700");
 $feature_count=(int)($wpdb->get_var("SELECT option_value FROM wp_options WHERE option_id=701"));
 $roundtable_count=(int)($wpdb->get_var("SELECT option_value FROM wp_options WHERE option_id=702"));
@@ -44,5 +43,6 @@ else if(3<$featured_count || $featured_count<=6){
       echo "featured >7";
     }
   }
+  
 
 ?>
