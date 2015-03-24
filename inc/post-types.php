@@ -17,7 +17,7 @@ function create_post_types() {
 				'search_items' => 'Search Articles'
 			),
 			'public' => true,
-			'supports' => array('title', 'editor', 'thumbnail', 'excerpt'),
+			'supports' => array('title', 'editor', 'thumbnail', 'excerpt', 'page-attributes'),
 			'has_archive' => true,
 			'menu_position' => 5,
 			'menu_icon' => 'dashicons-media-text'
