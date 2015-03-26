@@ -17,10 +17,10 @@ function create_post_types() {
 				'search_items' => 'Search Articles'
 			),
 			'public' => true,
-			'supports' => array('title', 'editor', 'thumbnail', 'excerpt'),
+			'supports' => array('title', 'editor', 'thumbnail', 'excerpt', 'page-attributes'),
 			'has_archive' => true,
 			'menu_position' => 5,
-			'menu_icon' => 'dashicons-media-text'
+			'menu_icon' => 'dashicons-media-text',
 		)
 	);
 
@@ -38,7 +38,8 @@ function create_post_types() {
 				'new_item_name' => 'Column.newitemname'
 			),
 			'public' => true,
-			'hierarchical' => true
+			'hierarchical' => true,
+			'rewrite' => array('hierarchical' => true )
 		)
 	);
 	register_taxonomy( 'topic', 'article',

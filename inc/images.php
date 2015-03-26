@@ -32,7 +32,7 @@ function gazette_img_caption_shortcode( $empty, $attr, $content ){
 	$align2 = '';
 	if (esc_attr( $attr['align'] ) == "aligncenter"){
 		$align1 = '</div></div></div><div class="row"><div class="col-sm-12">';
-		$align2 = '</div></div><div class="row"><div class="col-sm-6"><div class="entry-content">';
+		$align2 = '</div></div><div class="row"><div class="col-sm-12"><div class="entry-content">';
 	}
 	
 	return $align1 
@@ -75,9 +75,9 @@ function my_post_gallery( $output, $attr ) {
 		'order'      => 'ASC',
 		'orderby'    => 'menu_order ID',
 		'id'         => $post->ID,
-		'itemtag'    => 'dl',
-		'icontag'    => 'dt',
-		'captiontag' => 'dd',
+		'itemtag'    => 'figure',
+		'icontag'    => 'div',
+		'captiontag' => 'figcaption',
 		'columns'    => 3,
 		'size'       => 'thumbnail',
 		'include'    => '',
@@ -128,20 +128,14 @@ function my_post_gallery( $output, $attr ) {
 	$itemwidth = $columns > 0 ? floor( 100 / $columns ) : 100;
 	$float = is_rtl() ? 'right' : 'left';
 	$selector = "gallery-{$instance}";
+	$bootCol = $columns > 0 ? floor( 12 / $columns ) : 12;
 
 	// Filter gallery CSS
 	$output = apply_filters( 'gallery_style', "
 		</div>
 		</div>
-		</div>
-		<div class='row'>
-		<div class='col-sm-12'>
-		<style type='text/css'>
-			#{$selector} .gallery-item {
-				width: {$itemwidth}%;
-			}
-		</style>
-		<div id='$selector' class='gallery galleryid-{$id} pics-{$columns}'>"
+		</div>		
+		<div id='$selector' class='gallery galleryid-{$id} pics-{$columns} row'>"
 	);
 
 	// Iterate through the attachments in this gallery instance
@@ -152,7 +146,7 @@ function my_post_gallery( $output, $attr ) {
 		$link = isset( $attr['link'] ) && 'file' == $attr['link'] ? wp_get_attachment_link( $id, $size, false, false ) : wp_get_attachment_link( $id, $size, true, false ); 
 
 		// Start itemtag
-		$output .= "<{$itemtag} class='gallery-item'><div class='gallery-item-wrap'>";
+		$output .= "<{$itemtag} class='gallery-item col-sm-{$bootCol}'><div class='gallery-item-wrap'>";
 
 		// icontag
 		$output .= "
@@ -181,7 +175,7 @@ function my_post_gallery( $output, $attr ) {
 	// End gallery output
 	$output .= "
 		<br style='clear: both;'>
-	</div></div></div><div class='row'><div class='col-sm-6'><div class='entry-content'>\n";
+	</div><div class='row'><div class='col-sm-12'><div class='entry-content'>\n";
 
 	return $output;
 

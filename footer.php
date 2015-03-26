@@ -10,7 +10,7 @@
 </div>
 <!-- #content -->
 <?php if ( is_active_sidebar( 'sidebar-footer' ) ) { ?>
-	<div id="promos">
+	<div id="promos" class="row">
 		<?php dynamic_sidebar( 'sidebar-footer' ); ?>
 	</div>
 <?php }; ?>
