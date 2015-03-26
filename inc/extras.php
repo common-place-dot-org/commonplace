@@ -203,6 +203,7 @@ add_filter( 'manage_edit-article_sortable_columns', 'my_article_sortable_columns
 function my_article_sortable_columns( $columns ) {
 	$columns['issue'] = 'issue';
 	$columns['column'] = 'column';
+	$columns['writer'] = 'writer';
 	return $columns;
 }
 
