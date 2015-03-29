@@ -21,7 +21,6 @@
 <body <?php body_class(); ?>>
 	<div id="page" class="container">
 		<a class="skip-link sr-only" href="#content"><?php _e( 'Skip to content', 'gazette' ); ?></a>
-		<div class=
 		<header id="masthead" class="page-header" role="banner">
 			<div class="row">
 				<div class="col-sm-4 col-sm-offset-4">
