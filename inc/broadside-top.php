@@ -1,164 +1,154 @@
-<div class="row" id="main-top">
-		<?php 
+<?php 
 		
-			// ** Arguments for the Features query
-			$features_args = array(
-				'posts_per_page'   => -1,
-				'orderby'          => 'menu_order',
-				'order'            => 'DESC',
-				'post_type'        => 'article',
-				'post_status'      => 'publish',
-				'column' 			 => 'features',
-				'tax_query'		 => array(
-											array(
-												'taxonomy'  			=> 'issue',
-												'field'     			=> 'slug',
-												'terms'     			=> $issue_slug,
-												'include_children' 	=> false, 
-												'operator'  			=> 'IN'
-											)
-										)
-			);
-			// ** Roundtable query  
-			$roundtables_args = array(
-				'posts_per_page'   => -1,
-				'orderby'          => 'menu_order',
-				'order'            => 'DESC',
-				'post_type'        => 'article',
-				'post_status'      => 'publish',
-				'column' 			 => 'roundtable',
-				'issue'				 => $issue_slug
-			);
-			
-			// ** Count the Articles
-			
-				$features = get_posts( $features_args );
-				$features_count = count($features); 
-				//echo 'features count: '.$features_count;
-				//$features_count = 4;
-				
-				$roundtables = get_posts( $roundtables_args );
-				$roundtables_count = count($roundtables); 
-				//$roundtables_count = 0; 
-		
-			/* 
-			*	Layout Variables
-			*	Used to change the bootstrap col numbers based on number of feature articles and roundtable articles. - AB
-			*	
-			*/
-		
-			
-			if ($roundtables_count > 0 ){
-				// YES ROUNDTABLES
-				
-				// change the width of the 'features' wrapper
-				$features_grid = 7;
-				// change feature articles to single column. 
-				$features_articles_grid = 12;
-				
-				// add more or less room for img based on number of articles. 
-				if ($features_count > 3 ){
-					$feature_img_grid = 3;
-					$feature_text_grid = 9;
-				} else {
-					$feature_img_grid = 5;
-					$feature_text_grid = 7;
-				}
-				// change widths and orientation of articles depending on number. 
-				switch ($features_count) {
-					// there are 2 features
-					case 2:	
-						$feature_split = false;
-						$features_articles_grid = 12;
-						$feature_img_grid = 12;
-						$feature_text_grid = 12;
-						break;
-					// there are 3 features
-					case 3:		
-						$feature_split = false;
-						$features_articles_grid = 12;
-						$feature_img_grid = 4;
-						$feature_text_grid = 8;
-						break;
-					case 4:	
-						$feature_split = false;
-						$features_articles_grid = 12;
-						$feature_img_grid = 3;
-						$feature_text_grid = 9;
-						break;
-					// if there are 5+ features
-					default :
-						$feature_split = false;
-						$features_articles_grid = 12;
-						$feature_img_grid = 2;
-						$feature_text_grid = 10;
-				}
-				
-			} else {
-				
-				// NO ROUNDTABLES 
-				
-				// set 'features' wrapper to full width. 
-				$features_grid = 12;
-				
-				// change widths and orientation of articles depending on number. 
-				switch ($features_count) {
-					// there are 2 features
-					case 2:	
-						$feature_split = false;
-						$features_articles_grid = 6;
-						$feature_img_grid = 12;
-						$feature_text_grid = 12;
-						break;
-					// there are 3 features
-					case 3:		
-						$feature_split = false;
-						$features_articles_grid = 4;
-						$feature_img_grid = 12;
-						$feature_text_grid = 12;
-						break;
-					case 4:	
-						$feature_split = false;
-						$features_articles_grid = 3;
-						$feature_img_grid = 12;
-						$feature_text_grid = 12;
-						break;
-					// if there are 5+ features
-					default :
-						$feature_split = true;
-						$features_articles_grid = 6;
-						$feature_img_grid = 4;
-						$feature_text_grid = 8;
-				}
-				
-				// width for each element within the article
-				
-			};
-		?> 
-		<?php 
-		/* 
-		*	Generate Features Articles
-		*/
-		?>
-		
-		
-		
-		
-		<div class="col-sm-<?php echo $features_grid;?>" id="features">
-			<?php $query = new WP_Query($features_args); 
-			
-			echo count($query);
-			
-			?>
+// These queries will be used to count articles, adn display them on the page. 
+$features_args = array(
+	'posts_per_page'   => -1,
+	'orderby'          => 'menu_order',
+	'order'            => 'DESC',
+	'post_type'        => 'article',
+	'post_status'      => 'publish',
+	'column' 			 => 'features',
+	'tax_query'		 => array(
+								array(
+									'taxonomy'  			=> 'issue',
+									'field'     			=> 'slug',
+									'terms'     			=> $issue_slug,
+									'include_children' 	=> false, 
+									'operator'  			=> 'IN'
+								)
+							)
+);
+$roundtables_args = array(
+	'posts_per_page'   => -1,
+	'orderby'          => 'menu_order',
+	'order'            => 'DESC',
+	'post_type'        => 'article',
+	'post_status'      => 'publish',
+	'column' 			 => 'roundtable',
+	'issue'				 => $issue_slug
+);
+
+// Count the Articles
+	$features = get_posts( $features_args );
+	$features_count = count($features); 
+	//echo 'features count: '.$features_count;
+	//$features_count = 4;
 	
-			<?php
+	$roundtables = get_posts( $roundtables_args );
+	$roundtables_count = count($roundtables); 
+	//$roundtables_count = 0; 
+
+
+// Layout variables: Determined by the Article count. 
+
+// if this issue has any round table articles...
+if ($roundtables_count > 0 ){
+		
+	// change the width of the 'features' wrapper
+	$features_grid = 7;
+	// change feature articles to single column. 
+	$features_articles_grid = 12;
+	
+	// add more or less room for img based on number of articles. 
+	if ($features_count > 3 ){
+		$feature_img_grid = 3;
+		$feature_text_grid = 9;
+	} else {
+		$feature_img_grid = 5;
+		$feature_text_grid = 7;
+	}
+	// change widths and orientation of articles depending on number. 
+	switch ($features_count) {
+		// there are 2 features
+		case 2:	
+			$feature_split = false;
+			$features_articles_grid = 12;
+			$feature_img_grid = 12;
+			$feature_text_grid = 12;
+			break;
+		// there are 3 features
+		case 3:		
+			$feature_split = false;
+			$features_articles_grid = 12;
+			$feature_img_grid = 4;
+			$feature_text_grid = 8;
+			break;
+		case 4:	
+			$feature_split = false;
+			$features_articles_grid = 12;
+			$feature_img_grid = 3;
+			$feature_text_grid = 9;
+			break;
+		// if there are any other number of features
+		default :
+			$feature_split = false;
+			$features_articles_grid = 12;
+			$feature_img_grid = 2;
+			$feature_text_grid = 10;
+	}
+	
+} else {
+	
+	// If this issue does not have a roundtable....  
+	
+	// set 'features' wrapper to full width. 
+	$features_grid = 12;
+	
+	// change widths and orientation of articles depending on number. 
+	switch ($features_count) {
+		// there are 2 features
+		case 2:	
+			$feature_split = false;
+			$features_articles_grid = 6;
+			$feature_img_grid = 12;
+			$feature_text_grid = 12;
+			break;
+		// there are 3 features
+		case 3:		
+			$feature_split = false;
+			$features_articles_grid = 4;
+			$feature_img_grid = 12;
+			$feature_text_grid = 12;
+			break;
+		// there are 4 features
+		case 4:	
+			$feature_split = false;
+			$features_articles_grid = 3;
+			$feature_img_grid = 12;
+			$feature_text_grid = 12;
+			break;
+		// if there are any other number of features
+		default :
+			$feature_split = true;
+			$features_articles_grid = 6;
+			$feature_img_grid = 4;
+			$feature_text_grid = 8;
+	}
+	
+	// width for each element within the article
+	
+};
+?> 
+
+
+<div class="row" id="main-top">
+		<div class="col-sm-<?php echo $features_grid;?>" id="features">
+			<header>
+				<h2>Features</h2>
+			</header>
+			<?php 
+			// query the features.
+			$query = new WP_Query($features_args);
+
+
 			// used to calculate odds and evens. 
 			$featureCounter = 1; 
 			while ( $query->have_posts() ) {
 				$query->the_post();
 				
-				// Is this an odd article or even 
+				// are there so many features that we need 2 columns of them?
 				if ($feature_split) {
+					// in 2 col mode, we need to track even and odd articles to create rows.
 					if ($featureCounter % 2 == 0) {
 						$feature_even = true;
 					} else {
@@ -190,30 +180,30 @@
 					</article>
 				</div>
 				<?php 
-				
+				// if we're running 2 cols, we don;t always want to close the row. 
 				if ($feature_split) {
-					// close the row if this is an even numbered article
+					// close the row if this is an even numbered article, or the last article in the bunch. 
 					if ($feature_even || ($featureCounter == $features_count)) {
 						echo '</div>';
 					}
-					// used to calculate odds and evens. 
+					//increase the article counter
 					$featureCounter++;
+					// reset odd/even. 
 					$feature_even = false;
 					$feature_odd = false;
 				} else {
+					// if we're not in 2col mode, always close the row. 
 					echo '</div>';	
 				}
 			}
 			?>
-			<?php wp_reset_postdata(); ?>
+			<?php 
+			//reset the query
+			wp_reset_postdata(); 
+			?>
 		</div> <!-- /features -->
 		<?php 
-		
-		/* 
-		*	Generate Roundtable Articles
-		*/
-		
-		
+		// If we need a roundtables section... 
 		if ($roundtables_count > 0 ){?>
 			
 			<div class="col-sm-5" id="roundtables">
@@ -247,9 +237,9 @@
 									// Don't print the info of the parent column "roundtables" just the info for the child column, the specfici roundtable. 
 									$parent = "$term->parent";
 									if ($parent != 0) {
-										echo '<h3 class="roundtable-description">';
+										echo '<h2 class="roundtable-description">';
 											echo "$term->description";
-										echo '</h3>';
+										echo '</h2>';
 									} 
 								}	
 							}
@@ -274,4 +264,4 @@
 		} else {
 			echo 'roundtables is <= 0';	
 		}?>
-	</div><!--  /row -->
+	</div><!--  /main-top -->
