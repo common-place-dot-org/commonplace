@@ -115,16 +115,6 @@ require get_template_directory() . '/inc/featured-issue.php';
 */
 require get_template_directory() . '/inc/require-post-category.php';
 
-<<<<<<< HEAD
-/**
-* Changes HTML of Images from Media Library
-*/
- require get_template_directory() . '/inc/images.php';
-=======
-/*Requires article to have issue picked upon creation
-*/
-require get_template_directory() . '/inc/count_features.php';
-
 /*Adds images*/
 
 require get_template_directory() . '/inc/images.php';
@@ -132,4 +122,3 @@ require get_template_directory() . '/inc/images.php';
 /*Adds option to filter articles by issue*/
 
 require get_template_directory() . '/inc/filter_by_taxonomy.php';
->>>>>>> 3d37025a24d311221b699b53256316a345da77f5
