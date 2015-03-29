@@ -91,11 +91,6 @@ require get_template_directory() . '/inc/extras.php';
 require get_template_directory() . '/inc/customizer.php';
 
 /**
- * Load Jetpack compatibility file.
- */
-require get_template_directory() . '/inc/jetpack.php';
-
-/**
  * Load Custom Post types.
  */
 require get_template_directory() . '/inc/post-types.php';
@@ -104,11 +99,6 @@ require get_template_directory() . '/inc/post-types.php';
 * Generates citations
 */
 require get_template_directory() . '/inc/citation.php';
-
-/**
-* Adds Select Featured Issue to Dashboard
-*/
-require get_template_directory() . '/inc/featured-issue.php';
 
 /**
 * Requires article to have issue picked upon creation
