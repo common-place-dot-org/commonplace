@@ -44,5 +44,36 @@ else if(3<$featured_count || $featured_count<=6){
     }
   }
   
+  			//Set roundtable article count
+			$roundtables_args = array(
+				'posts_per_page'   => -1,
+				'orderby'          => 'menu_order',
+				'order'            => 'DESC',
+				'post_type'        => 'article',
+				'post_status'      => 'publish',
+				'column' 			 => 'roundtable',
+				'issue'				 => $featured_issue
+			);
+			$roundtables_query = new WP_Query($roundtables_args);
+			$roundtables_count = $roundtables_query->found_posts;
+			
+			//var_dump($roundtables_query);
+			echo $roundtables_count;
+			
+			$features_args = array(
+				'posts_per_page'   => -1,
+				'orderby'          => 'menu_order',
+				'order'            => 'DESC',
+				'post_type'        => 'article',
+				'post_status'      => 'publish',
+				'column' 			 => 'features',
+				'issue'				 => $featured_issue
+			);
+			$features_query = new WP_Query($features_args);
+			$features_count = $features_query->found_posts;
+			
+			echo $features_count;
+			//var_dump($features_query);
+  
 
 ?>
