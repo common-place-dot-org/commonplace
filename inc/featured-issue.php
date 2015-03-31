@@ -42,81 +42,97 @@ function set_featured(){
 			$wpdb->query($make_featured_issue);
 
 			//Set feature article count
+			$features_args = array(
+				'posts_per_page'   => -1,
+				'orderby'          => 'menu_order',
+				'order'            => 'DESC',
+				'post_type'        => 'article',
+				'post_status'      => 'publish',
+				'column' 			 => 'features',
+				'tax_query'		 => array(
+											array(
+												'taxonomy'  			=> 'issue',
+												'field'     			=> 'slug',
+												'terms'     			=> $issue_slug,
+												'include_children' 	=> false, 
+												'operator'  			=> 'IN'
+											)
+										)
+			);
+			$features = get_posts( $features_args );
+			$features_count = count($features);
+			
+			//Set featured count in database
 			$featured_count=$wpdb->get_var($wpdb->prepare( "SELECT Features FROM cp_issue_columns WHERE Issue=%s",$choosen_issue));
-			$make_featured_count=$wpdb->prepare("INSERT INTO wp_options VALUES (701,'featured_count',%s,'no')",$featured_count);
+			$make_featured_count=$wpdb->prepare("INSERT INTO wp_options VALUES (701,'featured_count',%s,'no')",$features_count);
 			$wpdb->query($make_featured_count);
+			
+			//Set roundtable article count
+			$roundtables_args = array(
+				'posts_per_page'   => -1,
+				'orderby'          => 'menu_order',
+				'order'            => 'DESC',
+				'post_type'        => 'article',
+				'post_status'      => 'publish',
+				'column' 			 => 'roundtable',
+				'issue'				 => $issue_slug
+			);
+			
+			$roundtables = get_posts( $roundtables_args );
+			$roundtables_count = count($roundtables); 
 
-			//Set round table article count
+			//Set round table article count in database
 			$featured_round=$wpdb->get_var($wpdb->prepare( "SELECT RoundTable FROM cp_issue_columns WHERE Issue=%s",$choosen_issue));
-			$make_featured_round=$wpdb->prepare("INSERT INTO wp_options VALUES (702,'featured_round',%s,'no')",$featured_round);
+			$make_featured_round=$wpdb->prepare("INSERT INTO wp_options VALUES (702,'featured_round',%s,'no')",$roundtables_round);
 			$wpdb->query($make_featured_round);
-
-			if($featured_count<=3){
-			  if($featured_round>0){
-				change_homepage_template('homepage3_round.php');
-			  }
-			  else{
-				change_homepage_template('homepage3.php');
-			  }
-			}
-			else if(3<$featured_count && $featured_count<=6){
-			  if($featured_round>0){
-				change_homepage_template('homepage6_round.php');
-			  }
-			  else{
-				change_homepage_template('homepage6.php');
-			  }
-			}
-			  else{
-				if($featured_round>0){
-				  change_homepage_template('homepage7.php');
-				}
-				else{
-				  change_homepage_template('homepage7_round.php');
-				}
-			  }
 
 		}
 		else{
 			$update_featured_issue=$wpdb->prepare("UPDATE wp_options SET option_value=%s WHERE option_name='featured_issue'",$choosen_issue);
 			$wpdb->query($update_featured_issue);
-
-			//Update feature article count
-			$featured_count=$wpdb->get_var($wpdb->prepare( "SELECT Features FROM cp_issue_columns WHERE Issue=%s",$choosen_issue));
-			$make_featured_issue=$wpdb->prepare("UPDATE wp_options SET option_value=%s WHERE option_name='featured_count'",$featured_count);
-			$wpdb->query($make_featured_issue);
-
-			//Set round table article count
-			$featured_round=$wpdb->get_var($wpdb->prepare( "SELECT RoundTable FROM cp_issue_columns WHERE Issue=%s",$choosen_issue));
-			$make_featured_round=$wpdb->prepare("UPDATE wp_options SET option_value=%s WHERE option_name='featured_round'",$featured_round);
-			$wpdb->query($make_featured_round);
 			
-			//Set Homepage Template
-			if($featured_count<4){
-			  if($featured_round>0){
-				change_homepage_template('homepage3_round.php');
-			  }
-			  else{
-				change_homepage_template('homepage3.php');
-			  }
-			}
-			else if(3<$featured_count && $featured_count<7){
-			  if($featured_round>0){
-				change_homepage_template('homepage6_round.php');
-				
-			  }
-			  else{
-				change_homepage_template('homepage6.php');
-			  }
-			}
-			  else{
-				if($featured_round>0){
-				  change_homepage_template('homepage7_round.php');
-				}
-				else{
-				  change_homepage_template('homepage7.php');
-				}
-			  }
+			//Set feature article count
+			$features_args = array(
+				'posts_per_page'   => -1,
+				'orderby'          => 'menu_order',
+				'order'            => 'DESC',
+				'post_type'        => 'article',
+				'post_status'      => 'publish',
+				'column' 			 => 'features',
+				'tax_query'		 => array(
+											array(
+												'taxonomy'  			=> 'issue',
+												'field'     			=> 'slug',
+												'terms'     			=> $issue_slug,
+												'include_children' 	=> false, 
+												'operator'  			=> 'IN'
+											)
+										)
+			);
+			$features = get_posts( $features_args );
+			$features_count = count($features);
+
+			//Update feature article count in database
+			$make_featured_issue=$wpdb->prepare("UPDATE wp_options SET option_value=%s WHERE option_name='featured_count'",$features_count);
+			$wpdb->query($make_featured_issue);
+			
+			//Set roundtable article count
+			$roundtables_args = array(
+				'posts_per_page'   => -1,
+				'orderby'          => 'menu_order',
+				'order'            => 'DESC',
+				'post_type'        => 'article',
+				'post_status'      => 'publish',
+				'column' 			 => 'roundtable',
+				'issue'				 => $issue_slug
+			);
+			
+			$roundtables = get_posts( $roundtables_args );
+			$roundtables_count = count($roundtables);
+
+			//Set round table article count in database
+			$make_featured_round=$wpdb->prepare("UPDATE wp_options SET option_value=%s WHERE option_name='featured_round'",$roundtables_round);
+			$wpdb->query($make_featured_round);
 		}
 	};
 }
