@@ -1,43 +1,17 @@
 <?php 
-		
-// These queries will be used to count articles, adn display them on the page. 
-$features_args = array(
-	'posts_per_page'   => -1,
-	'orderby'          => 'menu_order',
-	'order'            => 'DESC',
-	'post_type'        => 'article',
-	'post_status'      => 'publish',
-	'column' 			 => 'features',
-	'tax_query'		 => array(
-								array(
-									'taxonomy'  			=> 'issue',
-									'field'     			=> 'slug',
-									'terms'     			=> $issue_slug,
-									'include_children' 	=> false, 
-									'operator'  			=> 'IN'
-								)
-							)
-);
-$roundtables_args = array(
-	'posts_per_page'   => -1,
-	'orderby'          => 'menu_order',
-	'order'            => 'DESC',
-	'post_type'        => 'article',
-	'post_status'      => 'publish',
-	'column' 			 => 'roundtable',
-	'issue'				 => $issue_slug
-);
 
-// Count the Articles
-	$features = get_posts( $features_args );
-	$features_count = count($features); 
-	//echo 'features count: '.$features_count;
-	//$features_count = 4;
+/*
+*Template Name: Home Broadside
+* 
+*/ 
+
+	$featured_issue=$wpdb->get_var( "SELECT option_value FROM wp_options WHERE option_name='featured_issue'");
+	$features_count=(int)($wpdb->get_var("SELECT option_value FROM wp_options WHERE option_name='featured_count'"));
+	$roundtables_count=(int)($wpdb->get_var("SELECT option_value FROM wp_options WHERE option_name='featured_round'"));
 	
-	$roundtables = get_posts( $roundtables_args );
-	$roundtables_count = count($roundtables); 
-	//$roundtables_count = 0; 
-
+	echo "Current Issue: ".$featured_issue;
+	echo "Featured Count: ".$features_count;
+	echo "Roundtable Count: "$roundtables_count;
 
 // Layout variables: Determined by the Article count. 
 

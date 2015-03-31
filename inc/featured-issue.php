@@ -1,7 +1,5 @@
 <?php
 
-include 'change_homepage_template.php';
-
 function featured_issue(){
   wp_add_dashboard_widget('featured_issue',
   'Featured Issue',
@@ -31,12 +29,11 @@ echo "<form method='post' action=".$_SERVER['PHP_SELF']."><select name='choosen_
 /*Set Featured Issue in Database */
 function set_featured(){
 	global $wpdb;
+	global $post;
 	if(isset($_POST['choosen_issue'])){
-		echo $_POST['choosen_issue'];
 		$choosen_issue=$_POST['choosen_issue'];
 		/* Is featured-issue already in the database? */
 		$featured_issue_set=$wpdb->get_var("SELECT option_name FROM wp_options WHERE option_name='featured_issue'");
-		var_dump($featured_issue_set);
 		if($featured_issue_set==NULL){
 			$make_featured_issue=$wpdb->prepare("INSERT INTO wp_options VALUES (700,'featured_issue',%s,'no')",$choosen_issue);
 			$wpdb->query($make_featured_issue);
@@ -62,8 +59,8 @@ function set_featured(){
 			$features = get_posts( $features_args );
 			$features_count = count($features);
 			
+			
 			//Set featured count in database
-			$featured_count=$wpdb->get_var($wpdb->prepare( "SELECT Features FROM cp_issue_columns WHERE Issue=%s",$choosen_issue));
 			$make_featured_count=$wpdb->prepare("INSERT INTO wp_options VALUES (701,'featured_count',%s,'no')",$features_count);
 			$wpdb->query($make_featured_count);
 			
@@ -80,9 +77,9 @@ function set_featured(){
 			
 			$roundtables = get_posts( $roundtables_args );
 			$roundtables_count = count($roundtables); 
+			
 
 			//Set round table article count in database
-			$featured_round=$wpdb->get_var($wpdb->prepare( "SELECT RoundTable FROM cp_issue_columns WHERE Issue=%s",$choosen_issue));
 			$make_featured_round=$wpdb->prepare("INSERT INTO wp_options VALUES (702,'featured_round',%s,'no')",$roundtables_round);
 			$wpdb->query($make_featured_round);
 
@@ -111,6 +108,8 @@ function set_featured(){
 			);
 			$features = get_posts( $features_args );
 			$features_count = count($features);
+			
+			
 
 			//Update feature article count in database
 			$make_featured_issue=$wpdb->prepare("UPDATE wp_options SET option_value=%s WHERE option_name='featured_count'",$features_count);
@@ -129,6 +128,8 @@ function set_featured(){
 			
 			$roundtables = get_posts( $roundtables_args );
 			$roundtables_count = count($roundtables);
+			
+
 
 			//Set round table article count in database
 			$make_featured_round=$wpdb->prepare("UPDATE wp_options SET option_value=%s WHERE option_name='featured_round'",$roundtables_round);
