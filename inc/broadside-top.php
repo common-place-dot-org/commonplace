@@ -6,14 +6,49 @@
 */ 
 get_header();
 
-	$featured_issue=$wpdb->get_var( "SELECT option_value FROM wp_options WHERE option_name='current_issue'");
-	$features_count=(int)($wpdb->get_var("SELECT option_value FROM wp_options WHERE option_name='features_count'"));
-	$roundtables_count=(int)($wpdb->get_var("SELECT option_value FROM wp_options WHERE option_name='roundtables_count'"));
-	
-	echo "Current Issue: ".$featured_issue;
-	echo "Featured Count: ".$features_count;
-	echo "Roundtable Count: "$roundtables_count;
+$current_issue=$wpdb->get_var( "SELECT option_value FROM wp_options WHERE option_name='current_issue'");
 
+$features_args=array(
+			'post_type'=>'article',
+			'post_status'      => 'publish',
+			'tax_query'		   => array(
+									'relation'=>'AND',
+									array(
+										'taxonomy'=>'issue',
+										'field'=>'name',
+										'terms'=>$current_issue,
+										),
+									array(
+										'taxonomy'=>'column',
+										'field'=>'name',
+										'terms'=>'Features',
+									)
+			)
+		);
+		
+$features_query = new WP_Query($features_args);
+$features_count = $features_query->found_posts;
+
+$roundtable_args=array(
+		'post_type'=>'article',
+		'post_status'      => 'publish',
+		'tax_query'		   => array(
+								'relation'=>'AND',
+								array(
+									'taxonomy'=>'issue',
+									'field'=>'name',
+									'terms'=>$current_issue,
+									),
+								array(
+									'taxonomy'=>'column',
+									'field'=>'name',
+									'terms'=>'Roundtable',
+								)
+		)
+	);
+		
+$roundtables_query = new WP_Query($roundtable_args);
+$roundtables_count = $roundtables_query->found_posts;
 // Layout variables: Determined by the Article count. 
 
 // if this issue has any round table articles...

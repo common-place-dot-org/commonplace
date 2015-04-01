@@ -38,85 +38,12 @@ function set_featured(){
 			$make_featured_issue=$wpdb->prepare("INSERT INTO wp_options VALUES (700,'current_issue',%s,'no')",$choosen_issue);
 			$wpdb->query($make_featured_issue);
 
-			//Set feature article count
-			$features_args = array(
-				'posts_per_page'   => -1,
-				'orderby'          => 'menu_order',
-				'order'            => 'DESC',
-				'post_type'        => 'article',
-				'post_status'      => 'publish',
-				'column' 			 => 'features',
-				'issue'				 => $featured_issue
-			);
-			$features_query = new WP_Query($features_args);
-			$features_count = $features_query->found_posts;
-			
-			
-			//Set featured count in database
-			$make_featured_count=$wpdb->prepare("INSERT INTO wp_options VALUES (701,'features_count',%s,'no')",$features_count);
-			$wpdb->query($make_featured_count);
-			
-			//Set roundtable article count
-			$roundtables_args = array(
-				'posts_per_page'   => -1,
-				'orderby'          => 'menu_order',
-				'order'            => 'DESC',
-				'post_type'        => 'article',
-				'post_status'      => 'publish',
-				'column' 			 => 'roundtable',
-				'issue'				 => $featured_issue
-			);
-			
-			$roundtables_query = new WP_Query($roundtables_args);
-			$roundtables_count = $roundtables_query->found_posts;
-			
-
-			//Set round table article count in database
-			$make_featured_round=$wpdb->prepare("INSERT INTO wp_options VALUES (702,'roundtables_count',%s,'no')",$roundtables_round);
-			$wpdb->query($make_featured_round);
-
 		}
 		else{
 			$update_featured_issue=$wpdb->prepare("UPDATE wp_options SET option_value=%s WHERE option_name='current_issue'",$choosen_issue);
 			$wpdb->query($update_featured_issue);
 			
-			//Set feature article count
-			$features_args = array(
-				'posts_per_page'   => -1,
-				'orderby'          => 'menu_order',
-				'order'            => 'DESC',
-				'post_type'        => 'article',
-				'post_status'      => 'publish',
-				'column' 			 => 'features',
-				'issue'				 => $featured_issue
-			);
-			$features_query = new WP_Query($features_args);
-			$features_count = $features_query->found_posts;
-			
-			
 
-			//Update feature article count in database
-			$make_featured_issue=$wpdb->prepare("UPDATE wp_options SET option_value=%s WHERE option_name='features_count'",$features_count);
-			$wpdb->query($make_featured_issue);
-			
-			//Set roundtable article count
-			$roundtables_args = array(
-				'posts_per_page'   => -1,
-				'orderby'          => 'menu_order',
-				'order'            => 'DESC',
-				'post_type'        => 'article',
-				'post_status'      => 'publish',
-				'column' 			 => 'roundtable',
-				'issue'				 => $featured_issue
-			);
-			$roundtables_query = new WP_Query($roundtables_args);
-			$roundtables_count = $roundtables_query->found_posts;
-			
-
-
-			//Set round table article count in database
-			$make_featured_round=$wpdb->prepare("UPDATE wp_options SET option_value=%s WHERE option_name='roundtables_count'",$roundtables_count);
-			$wpdb->query($make_featured_round);
 		}
 	};
 }
