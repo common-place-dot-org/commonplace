@@ -1,7 +1,7 @@
 <?php 
 
 /*
-*Template Name: Home Broadside
+*Template Name: Home
 * 
 */ 
 get_header();
