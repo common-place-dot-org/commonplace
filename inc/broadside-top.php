@@ -5,9 +5,9 @@
 * 
 */ 
 
-	$featured_issue=$wpdb->get_var( "SELECT option_value FROM wp_options WHERE option_name='featured_issue'");
-	$features_count=(int)($wpdb->get_var("SELECT option_value FROM wp_options WHERE option_name='featured_count'"));
-	$roundtables_count=(int)($wpdb->get_var("SELECT option_value FROM wp_options WHERE option_name='featured_round'"));
+	$featured_issue=$wpdb->get_var( "SELECT option_value FROM wp_options WHERE option_name='current_issue'");
+	$features_count=(int)($wpdb->get_var("SELECT option_value FROM wp_options WHERE option_name='features_count'"));
+	$roundtables_count=(int)($wpdb->get_var("SELECT option_value FROM wp_options WHERE option_name='roundtables_count'"));
 	
 	echo "Current Issue: ".$featured_issue;
 	echo "Featured Count: ".$features_count;
