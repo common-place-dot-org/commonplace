@@ -70,6 +70,7 @@ function gazette_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'gazette_scripts' );
 
+
 /**
  * Implement the Custom Header feature.
  */
