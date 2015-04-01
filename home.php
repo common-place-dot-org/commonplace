@@ -69,6 +69,9 @@ if($features_count<=3){
 						$features_query->the_post();
 						echo '<div class="col-sm-12">';
 						echo '<article>';
+						if ( has_post_thumbnail() ) {
+							the_post_thumbnail(array(150,150));
+						} 
 						echo '<h3 class="article-title">'.get_the_title()."</h3>";
 						echo '<div class="article-excerpt">'.get_the_excerpt()."</div>";
 						echo '</article>';
@@ -85,7 +88,7 @@ if($features_count<=3){
 			</div>
 			<div class="col-sm-6">
 				<section id="features">
-					<h2>Roundtable</h2>
+					<h2>Roundtables</h2>
 					<?php
 					$count=0;
 					while ( $roundtables_query->have_posts() ) {
@@ -93,6 +96,9 @@ if($features_count<=3){
 						if($count==0){
 							echo '<div class="col-sm-12">';
 							echo '<article>';
+							if ( has_post_thumbnail() ) {
+								the_post_thumbnail(array(150,150));
+							} 
 							echo '<h3 class="article-title">'.get_the_title()."</h3>";
 							echo '<div class="article-excerpt">'.get_the_excerpt()."</div>";
 							echo '</article>';
@@ -127,6 +133,9 @@ if($features_count<=3){
 				$features_query->the_post();
 				echo '<div class="col-sm-4">';
 				echo '<article>';
+				if ( has_post_thumbnail() ) {
+					the_post_thumbnail(array(150,150));
+				} 
 				echo '<h3 class="article-title">'.get_the_title()."</h3>";
 				echo '<div class="article-excerpt">'.get_the_excerpt()."</div>";
 				echo '</article>';
@@ -159,6 +168,9 @@ else if(3<$features_count || $features_count<=6){
 					$features_query->the_post();
 					echo '<div class="col-sm-6">';
 					echo '<article>';
+					if ( has_post_thumbnail() ) {
+						the_post_thumbnail(array(150,150));
+					} 
 					echo '<h3 class="article-title">'.get_the_title()."</h3>";
 					echo '<div class="article-excerpt">'.get_the_excerpt()."</div>";
 					echo '</article>';
@@ -177,6 +189,9 @@ else if(3<$features_count || $features_count<=6){
 					$features_query->the_post();
 					echo '<div class="col-sm-4">';
 					echo '<article>';
+					if ( has_post_thumbnail() ) {
+						the_post_thumbnail(array(150,150));
+					} 
 					echo '<h3 class="article-title">'.get_the_title()."</h3>";
 					echo '<div class="article-excerpt">'.get_the_excerpt()."</div>";
 					echo '</article>';
@@ -194,7 +209,7 @@ else if(3<$features_count || $features_count<=6){
 		</div>
 		<div class="col-sm-4">
 			<section id="features">
-				<h2>Roundtable</h2>
+				<h2>Roundtables</h2>
 				<?php
 				$count=0;
 				while ( $roundtables_query->have_posts() ) {
@@ -202,6 +217,9 @@ else if(3<$features_count || $features_count<=6){
 					if($count==0){
 						echo '<div class="col-sm-12">';
 						echo '<article>';
+						if ( has_post_thumbnail() ) {
+							the_post_thumbnail(array(150,150));
+						} 
 						echo '<h3 class="article-title">'.get_the_title()."</h3>";
 						echo '<div class="article-excerpt">'.get_the_excerpt()."</div>";
 						echo '</article>';
@@ -232,21 +250,19 @@ else if(3<$features_count || $features_count<=6){
 		<h2>Features</h2>
 		<?php
 		$count=0;
-		while ( $query->have_posts() ) {
-			if($count<=6){
-			$query->the_post();
+		while ( $features_query->have_posts() ) {
+			$features_query->the_post();
 			echo '<div class="col-sm-6">';
 			echo '<article>';
+			if ( has_post_thumbnail() ) {
+				the_post_thumbnail(array(150,150));
+			} 
 			echo '<h3 class="article-title">'.get_the_title()."</h3>";
 			echo '<div class="article-excerpt">'.get_the_excerpt()."</div>";
 			echo '</article>';
 			echo '</div>';
 			$count++;
 			}
-			else{
-				$query->the_post();
-			}
-		}
 		wp_reset_postdata();
 		?>
 		</section>
