@@ -112,3 +112,7 @@ require get_template_directory() . '/inc/images.php';
 /*Adds option to filter articles by issue*/
 
 require get_template_directory() . '/inc/filter_by_taxonomy.php';
+
+
+
+require get_template_directory() . '/inc/featured-issue.php';
