@@ -44,5 +44,28 @@ else if(3<$featured_count || $featured_count<=6){
     }
   }
   
+  			$features_args=array(
+				'post_type'=>'article',
+				'post_status'      => 'publish',
+				'tax_query' => array(
+					'relation' => 'AND',
+					array(
+						'taxonomy'=>'issue',
+						'field'=>'slug',
+						'terms'=>$choosen_issue
+					),
+					array(
+						'taxonomy' => 'column',
+						'field'    => 'name',
+						'terms'    => 'features'
+					)
+				)
+			);
+			
+			$features_query = new WP_Query($features_args);
+			$features_count = $features_query->found_posts;
+			
+			echo $features_count;
+  
 
 ?>

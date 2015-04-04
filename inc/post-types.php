@@ -60,8 +60,8 @@ function create_post_types() {
 		)
 	);
 	$issue_labels=array(
-		'name'              => _x( ' Issue', 'taxonomy general name' ),
-		'singular_name'     => _x( 'Issue', 'taxonomy singular name' ),
+		'name'              => _x( ' issue', 'taxonomy general name' ),
+		'singular_name'     => _x( 'issue', 'taxonomy singular name' ),
 		'search_items'      => __( 'Search Issues' ),
 		'all_items'         => __( 'All Issues' ),
 		'parent_item'       => __( 'Parent Issue' ),
