@@ -1,28 +1,38 @@
 <?php
 function create_post_types() {
 
-	register_post_type( 'article',
-		array(
-			'labels' => array(
-				'name' => 'Articles',
-				'singular_name' => 'Article',
-				//'menu_name' => 'Search Columns',
-				//'name_admin_bar' => 'Edit  ',
-				//'all_items' => 'Column.viewitem',
-				'add_new' => 'New Article',
-				'add_new_item' => 'Add New Article',
-				'edit_item' => 'Edit Article',
-				//'new_item' => 'Column.newitemname',
-				'view_item' => 'View Article',
-				'search_items' => 'Search Articles'
-			),
-			'public' => true,
-			'supports' => array('title', 'editor', 'thumbnail', 'excerpt', 'page-attributes'),
-			'has_archive' => true,
-			'menu_position' => 5,
-			'menu_icon' => 'dashicons-media-text',
-		)
+	$labels= array(
+		'name' => 'Articles',
+		'singular_name' => 'Article',
+		//'menu_name' => 'Search Columns',
+		//'name_admin_bar' => 'Edit  ',
+		//'all_items' => 'Column.viewitem',
+		'add_new' => 'New Article',
+		'add_new_item' => 'Add New Article',
+		'edit_item' => 'Edit Article',
+		//'new_item' => 'Column.newitemname',
+		'view_item' => 'View Article',
+		'search_items' => 'Search Articles'
 	);
+
+	$article_args=array(
+		'labels' =>$labels,
+		'public' => true,
+		'public'             => true,
+		'publicly_queryable' => true,
+		'show_ui'=> true,
+		'show_in_menu'=> true,
+		'supports' => array('title', 'editor', 'thumbnail', 'excerpt', 'page-attributes'),
+		'has_archive' => true,
+		'menu_position' => 5,
+		'menu_icon' => 'dashicons-media-text',
+		'query_var'          => true,
+		'rewrite'            => array( 'slug' => 'book' ),
+		'capability_type'    => 'post',
+		'hierarchical'       => false,
+   );
+
+	register_post_type( 'article',$article_args);
 
 	register_taxonomy( 'column', 'article',
 		array(
@@ -78,9 +88,9 @@ function create_post_types() {
 		);
 
 	register_taxonomy('issue','article', $Issues);
-	
-	
-	
+
+
+
 	register_post_type( 'project',
 		array(
 			'labels' => array(
@@ -97,6 +107,8 @@ function create_post_types() {
 				'search_items' => 'Search Projects'
 			),
 			'public' => true,
+			'show_ui'=> true,
+			'show_in_menu'=> true,
 			'supports' => array('title', 'thumbnail', 'excerpt'),
 			'has_archive' => true,
 			'menu_position' => 6,
@@ -104,8 +116,8 @@ function create_post_types() {
 		)
 	);
 
-	
-	
+
+
 }
 add_action( 'init', 'create_post_types' );
 ?>

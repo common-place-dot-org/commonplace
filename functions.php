@@ -84,7 +84,7 @@ require get_template_directory() . '/inc/template-tags.php';
 /**
  * Custom functions that act independently of the theme templates.
  */
-require get_template_directory() . '/inc/extras.php';
+//require get_template_directory() . '/inc/extras.php';
 
 /**
  * Customizer additions.
@@ -115,4 +115,10 @@ require get_template_directory() . '/inc/images.php';
 require get_template_directory() . '/inc/filter_by_taxonomy.php';
 
 
-require get_template_directory() . '/inc/featured-issue.php';
+//Set current issue
+if(current_user_can('set_current_issue')){
+		require get_template_directory() . '/inc/featured-issue.php';
+};
+
+//Set new user roles
+require get_template_directory() . '/inc/add_roles.php';
