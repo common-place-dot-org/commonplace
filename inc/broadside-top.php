@@ -12,7 +12,7 @@ $extra_issue=$wpdb->get_var( "SELECT option_value FROM wp_options WHERE option_n
 
 $issue_id=$wpdb->get_var($wpdb->prepare("SELECT term_id FROM wp_terms WHERE name=%s",$current_issue));
 
-
+echo "issue";
 
 $features_args=array(
 			'post_type'=>'article',
