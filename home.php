@@ -74,7 +74,7 @@ if (function_exists('z_taxonomy_image_url')){
 			<img src="<?php echo $issue_image_url;?>" alt="featured image">
 </div>
 
-
+<h2 id="issue-description"> <?php echo category_description( $issue_id ); ?> </h2>
 <?php
 
 // Layout variables: Determined by the Article count.
@@ -213,7 +213,6 @@ if ($roundtables_count > 0 ){
 							</div>
 							<div class="col-sm-<?php echo $feature_text_grid ?>">
 								<h3 class="article-title"><a href="<?php the_permalink();?>"><?php the_title();?></a></h3>
-								<p class="article-description"><?php echo category_description( $category_id ); ?></p>
 								<div class="article-excerpt"><?php the_excerpt();?></div>
 							</div>
 						</div>
@@ -295,7 +294,6 @@ if ($roundtables_count > 0 ){
 					?>
 					<article>
 						<h3 class="article-title"><a href="<?php the_permalink();?>"><?php the_title();?></a></h3>
-						<p class="article-description"><?php echo category_description( $category_id ); ?></p>
 						<div class="article-excerpt"><?php the_excerpt();?></div>
 					</article>
 					<?php $roundtableCounter++; ?>
