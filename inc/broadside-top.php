@@ -12,8 +12,6 @@ $extra_issue=$wpdb->get_var( "SELECT option_value FROM wp_options WHERE option_n
 
 $issue_id=$wpdb->get_var($wpdb->prepare("SELECT term_id FROM wp_terms WHERE name=%s",$current_issue));
 
-echo "issue";
-
 $features_args=array(
 			'post_type'=>'article',
 			'post_status'      => 'publish',
@@ -59,6 +57,26 @@ $roundtable_args=array(
 
 $roundtables_query = new WP_Query($roundtable_args);
 $roundtables_count = $roundtables_query->found_posts;
+
+//The featured issue picutre
+//Use $issue_image_url to output image url into theme
+
+if (function_exists('z_taxonomy_image_url')){
+		$issue_image_url=z_taxonomy_image_url($issue_id);
+	}
+	else{
+		echo "<h1>false</h1>";
+	}
+?>
+
+<!-- Sample code for current issue image -->
+<div class-"span12">
+			<img src="<?php echo $issue_image_url;?>" alt="featured image">
+</div>
+
+
+<?php
+
 // Layout variables: Determined by the Article count.
 
 // if this issue has any round table articles...
@@ -165,7 +183,6 @@ if ($roundtables_count > 0 ){
 			$featureCounter = 1;
 			while ( $query->have_posts() ) {
 				$query->the_post();
-
 				// are there so many features that we need 2 columns of them?
 				if ($feature_split) {
 					// in 2 col mode, we need to track even and odd articles to create rows.
@@ -187,9 +204,11 @@ if ($roundtables_count > 0 ){
 						<div class="row">
 							<div class="col-sm-<?php echo $feature_img_grid; ?>">
 								<figure class="article-img">
-									<a href="<?php the_permalink();?>"><? the_post_thumbnail('post-thumbnail', array(
-											'class' => "attachment-$size img-responsive",
-									));?></a>
+									<a href="<?php the_permalink();?>"><? if ( has_post_thumbnail() ) {
+												the_post_thumbnail('post-thumbnail', array(
+												'class' => "attachment-$size img-responsive",
+												));
+											};?></a>
 								</figure>
 							</div>
 							<div class="col-sm-<?php echo $feature_text_grid ?>">
@@ -246,9 +265,11 @@ if ($roundtables_count > 0 ){
 							if (get_the_post_thumbnail() != '') {
 								// if there's a featured image, display that. ?>
 								<div class="roundtable-img">
-									<? the_post_thumbnail('post-thumbnail', array(
-											'class' => "attachment-$size img-responsive",
-									));?>
+									<? if ( has_post_thumbnail() ) {
+												the_post_thumbnail('post-thumbnail', array(
+												'class' => "attachment-$size img-responsive",
+												));
+										 };?>
 								</div><!-- /roundtable-img -->
 							<?php
 							} else {
