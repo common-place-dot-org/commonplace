@@ -72,9 +72,9 @@ if (function_exists('z_taxonomy_image_url')){
 <!-- Sample code for current issue image -->
 <div class-"span12">
 			<img src="<?php echo $issue_image_url;?>" alt="featured image">
+			<h5 id="issue-description"><?php echo term_description($issue_id,'issue');?></h5>
 </div>
 
-<h5 id="issue-description"><?php echo term_description($issue_id,'issue');?></h5>
 <?php
 
 // Layout variables: Determined by the Article count.
