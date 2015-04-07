@@ -6,57 +6,70 @@
 */
 get_header();
 
+global $wp_query;
+
 $current_issue=$wpdb->get_var( "SELECT option_value FROM wp_options WHERE option_name='current_issue'");
 
 $extra_issue=$wpdb->get_var( "SELECT option_value FROM wp_options WHERE option_name='extra_issue'");
 
 $issue_id=$wpdb->get_var($wpdb->prepare("SELECT term_id FROM wp_terms WHERE name=%s",$current_issue));
 
-$features_args=array(
-			'post_type'=>'article',
+echo $current_issue;
+
+echo "<h1>".$issue_id."</h1>";
+
+$features_args = array(
+			'posts_per_page'   => -1,
+			'orderby'          => 'menu_order',
+			'order'            => 'DESC',
+			'post_type'        => 'article',
 			'post_status'      => 'publish',
-			'tax_query'		   => array(
-									'relation'=>'AND',
-									array(
-										'taxonomy'=>'issue',
-										'field'=>'name',
-										'terms'=>$current_issue,
-										'include_children'=>$extra_issue,
-										),
-									array(
-										'taxonomy'=>'column',
-										'field'=>'name',
-										'terms'=>'Features',
-										'include_children'=>$extra_issue,
+			'column' 			 => 'features',
+			'tax_query'		 => array(
+										array(
+										'taxonomy'  			=> 'issue',
+										'field'     			=> 'term_id',
+										'terms'     			=> $issue_id,
+										'include_children' 	=> true,
+										'operator'  			=> 'IN'
+										)
 									)
-			)
 		);
+
+		// ** Roundtable query
+		$roundtables_args = array(
+				'posts_per_page'   => -1,
+				'orderby'          => 'menu_order',
+				'order'            => 'DESC',
+			  'post_type'        => 'article',
+				'post_status'      => 'publish',
+				'column' 			 => 'roundtable',
+				'tax_query'		 => array(
+											array(
+											'taxonomy'  			=> 'issue',
+											'field'     			=> 'term_id',
+											'terms'     			=> $issue_id,
+											'include_children' 	=> true,
+											'operator'  			=> 'IN'
+											)
+										)
+		);
+
+
+
+
 
 $features_query = new WP_Query($features_args);
 $features_count = $features_query->found_posts;
 
-$roundtable_args=array(
-		'post_type'=>'article',
-		'post_status'      => 'publish',
-		'tax_query'		   => array(
-								'relation'=>'AND',
-								array(
-									'taxonomy'=>'issue',
-									'field'=>'name',
-									'terms'=>$current_issue,
-									'include_children'=>$extra_issue,
-									),
-								array(
-									'taxonomy'=>'column',
-									'field'=>'name',
-									'terms'=>'Roundtable',
-									'include_children'=>$extra_issue,
-								)
-		)
-	);
-
-$roundtables_query = new WP_Query($roundtable_args);
+$roundtables_query = new WP_Query($roundtables_args);
 $roundtables_count = $roundtables_query->found_posts;
+
+
+
+echo "Roundtable count: ".$roundtables_count;
+echo "Features count: ".$features_count;
+
 
 //The featured issue picutre
 //Use $issue_image_url to output image url into theme
@@ -69,7 +82,7 @@ if (function_exists('z_taxonomy_image_url')){
 	}
 ?>
 
-<!-- Sample code for current issue image -->
+<!-- Code for current issue image -->
 <div class-"span12">
 			<img src="<?php echo $issue_image_url;?>" alt="featured image">
 			<h5 id="issue-description"><?php echo term_description($issue_id,'issue');?></h5>
@@ -166,23 +179,23 @@ if ($roundtables_count > 0 ){
 	// width for each element within the article
 
 };
+
 ?>
 
-
+<?php if($features_count>0){ ?>
 <div class="row" id="main-top">
 		<div class="col-sm-<?php echo $features_grid;?>" id="features">
 			<header>
 				<h2>Features</h2>
 			</header>
 			<?php
-			// query the features.
-			$query = new WP_Query($features_args);
+
 
 
 			// used to calculate odds and evens.
 			$featureCounter = 1;
-			while ( $query->have_posts() ) {
-				$query->the_post();
+			while ( $features_query->have_posts() ) {
+				$features_query->the_post();
 				// are there so many features that we need 2 columns of them?
 				if ($feature_split) {
 					// in 2 col mode, we need to track even and odd articles to create rows.
@@ -242,6 +255,8 @@ if ($roundtables_count > 0 ){
 			?>
 		</div> <!-- /features -->
 		<?php
+	  }
+		//ROUNDTABLES
 		// If we need a roundtables section...
 		if ($roundtables_count > 0 ){?>
 
@@ -249,9 +264,9 @@ if ($roundtables_count > 0 ){
 				<?php
 				// using this to track the first roundtable article.
 				$roundtableCounter = 0;
-				$query2 = new WP_Query($roundtables_args);
-				while ( $query2->have_posts() ) {
-					$query2->the_post();
+				$roundtables_query = new WP_Query($roundtables_args);
+				while ( $roundtables_query->have_posts() ) {
+					$roundtables_query->the_post();
 					?>
 					<?php
 
@@ -303,7 +318,7 @@ if ($roundtables_count > 0 ){
 			</div><!-- /roundtables -->
 		<?php
 		} else {
-			echo 'roundtables is <= 0';
+
 		}
 		get_footer();?>
 	</div><!--  /main-top -->
