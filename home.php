@@ -14,10 +14,6 @@ $extra_issue=$wpdb->get_var( "SELECT option_value FROM wp_options WHERE option_n
 
 $issue_id=$wpdb->get_var($wpdb->prepare("SELECT term_id FROM wp_terms WHERE name=%s",$current_issue));
 
-echo $current_issue;
-
-echo "<h1>".$issue_id."</h1>";
-
 $features_args = array(
 			'posts_per_page'   => -1,
 			'orderby'          => 'menu_order',
@@ -30,9 +26,9 @@ $features_args = array(
 										'taxonomy'  			=> 'issue',
 										'field'     			=> 'term_id',
 										'terms'     			=> $issue_id,
-										'include_children' 	=> true,
+										'include_children' 	=> $extra_issue,
 										'operator'  			=> 'IN'
-										)
+									)git
 									)
 		);
 
@@ -49,7 +45,7 @@ $features_args = array(
 											'taxonomy'  			=> 'issue',
 											'field'     			=> 'term_id',
 											'terms'     			=> $issue_id,
-											'include_children' 	=> true,
+											'include_children' 	=> $extra_issue,
 											'operator'  			=> 'IN'
 											)
 										)
@@ -65,10 +61,6 @@ $features_count = $features_query->found_posts;
 $roundtables_query = new WP_Query($roundtables_args);
 $roundtables_count = $roundtables_query->found_posts;
 
-
-
-echo "Roundtable count: ".$roundtables_count;
-echo "Features count: ".$features_count;
 
 ?>
 
