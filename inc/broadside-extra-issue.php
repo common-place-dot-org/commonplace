@@ -58,7 +58,7 @@ $extra_others_args = array (
 	</header>
 	<div id="extra-reviews" class="col-sm-8">
 		<header>
-			<h2>Reviews</h2>
+			<h2 class="column-title">Reviews</h2>
 		</header>
 		<?php 
 		
@@ -95,8 +95,12 @@ $extra_others_args = array (
 							</figure>
 						</div>
 						<div class="col-sm-9">
-							<h3><a href="<?php the_permalink();?>"><?php the_title();?></a></h3>
-							<div class="article-excerpt"><?php the_excerpt();?></div>
+							<h3 class="article-title"><a href="<?php the_permalink();?>"><?php the_title();?></a></h3>
+							<div class="article-excerpt"><span class="article-author"><?php  
+							echo the_field('author_first_name',$post->ID);
+							echo ' ';
+							echo the_field('author_last_name',$post->ID); ?>
+							</span><?php the_excerpt();?></div>
 						</div>
 					</div>
 				</article>
@@ -120,7 +124,6 @@ $extra_others_args = array (
 		?>
 	</div><!-- / extra reviews -->
 	<div class="col-sm-4" id="extra-others">
-		<header><h2>Other Articles</h2></header>
 		<div class="row">
 			<div class="col-sm-12">
 			<?php 
@@ -129,8 +132,13 @@ $extra_others_args = array (
 				$extra_others_query->the_post(); 
 				?>
 				<article <?php post_class(); ?>>
-					<h3><a href="#"><?php the_title(); ?></a></h3>
-					<div class="article-excerpt"><?php the_excerpt();?></div>
+					<h3 class="column-title"><?php echo get_the_term_list( $post->ID, 'column');?> </h3>
+					<h3 class="article-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+					<div class="article-excerpt"><span class="article-author"><?php  
+							echo the_field('author_first_name',$post->ID);
+							echo ' ';
+							echo the_field('author_last_name',$post->ID); ?>
+							</span><?php the_excerpt();?></div>
 				</article>				
 			<?php 
 			} //end while

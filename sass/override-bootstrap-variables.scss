@@ -16,12 +16,14 @@ $font-size-h6:            ceil(($font-size-base * 0.85)); // ~12px
 
 
 $headings-font-family: "Georgia", serif;
+$headings-font-weight: bold;
 $headings-color: #800924;
 
 $blockquote-font-size: ($font-size-base * 1.5);
 
 
 
+$nav-link-padding:        10px 7px;
 
 $navbar-default-bg: #800924;
 $navbar-default-color: #eee;

@@ -6,13 +6,21 @@
  */
 
 get_header(); ?>
+<style>
+.beautiful-taxonomy-filters-button{
+	background-color:#800924;
+}
+.beautiful-taxonomy-filters-button:hover{
+	background-color:#67081E;
+}
+</style>
+<header class="page-header">
+<h1 class="page-title"></h1>
 <section id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
-
+		<?php if(function_exists('show_beautiful_filters')){ show_beautiful_filters(); } ?>
 		<?php if ( have_posts() ) : ?>
-
-			<header class="page-header">
-				<h1 class="page-title">
+    <h4>
 					<?php
 						if ( is_category() ) :
 							single_cat_title();
@@ -37,42 +45,60 @@ get_header(); ?>
 
 						endif;
 					?>
-				</h1>
+				</h4>
 				<?php
 					// Show an optional term description.
 					$term_description = term_description();
 					if ( ! empty( $term_description ) ) :
-						printf( '<div class="taxonomy-description">%s</div>', $term_description );
+						printf( '<h5 class="taxonomy-description">%s</h5>', $term_description );
 					endif;
 				?>
 			</header><!-- .page-header -->
-			
-			<table>
-				<tr>
-					<th>Issue</th>
-					<th>Title</th>
-					<th>Column</th>
-					<th>Author</th>
-				</tr>
+
+			<table class="table table-responsive">
+					<thead>
+					<tr>
+						<th>Issue</th>
+						<th>Title</th>
+						<th>Column</th>
+						<th>Author</th>
+					</tr>
+					</thead>
+					<tbody>
 			<?php while ( have_posts() ) : the_post(); ?>
 				<tr>
-					<td>is#</td>
-					<td><?php the_title();?></td>
-					<td>col</td>
-					<td><?php the_field('author_first_name');?> <?php the_field('author_last_name');?></td>
-				</tr>
+								<td>
+									<?php $issues=get_the_terms($post->ID,'issue');
+									foreach($issues as $issue){
+										echo "<p>".$issue->name."</p>";
+									}
+									?>
+								</td>
+								<td><a href="<?php the_permalink(); ?>"><?php the_title();?></a></td>
+									<td><?php $issues=get_the_terms($post->ID,'column');
+								foreach($issues as $issue){
+									echo "<p>".$issue->name."</p>";
+								}
+								?></td>
+								<td><?php the_field('author_first_name');?> <?php the_field('author_last_name');?></td>
+							</tr>
+
 			<?php endwhile; ?>
-			</table>
+			</tbody></table>
 			<?php commonplace_paging_nav(); ?>
 
 		<?php else : ?>
 
 			<?php get_template_part( 'content', 'none' ); ?>
 
-		<?php endif; ?>
+		<?php endif;wp_reset_postdata(); ?>
 
 		</main><!-- #main -->
 	</section><!-- #primary -->
-
-<?php get_sidebar(); ?>
+<br><br>
+<script>
+jQuery(window).load(function() {
+		jQuery(".beautiful-taxonomy-filters-tax filter-count-3").css("color", "red");
+});
+</script>
 <?php get_footer(); ?>

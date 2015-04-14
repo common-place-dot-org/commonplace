@@ -9,22 +9,44 @@
 
 
 
-#main {
-	padding: 50px;
-	background-color: white;
-	border-radius:$border-radius-base;
-}
-.article {
+
+.article-view {
 }
 
 .single-article {
-
 	
+	#citation {
+		h2 {
+			font-size:1em;
+			font-weight:normal;	
+		}
+	}
+
+	#main {
+		background-color:white;
+		padding:50px;
+		-webkit-box-shadow: 0 1px 5px 0 #aaa;  
+		-moz-box-shadow:    0 1px 5px 0 #aaa; 
+		box-shadow:         0 1px 5px 0 #aaa;  
+	}
 	
 	.breadcrumb {
 		
 	}
 	
+	.entry-title {
+		color:black;
+	}
+
+	.entry-excerpt {
+		font-family:"Georgia", serif;
+		font-style:italic;	
+		
+		p {
+			margin-bottom:0;
+		}
+	}
+
 
 	.entry-content {
 
@@ -38,10 +60,15 @@
 		pre,
 		ul,
 		ol,
-		figure {
+		figure,
+		hr {
 			float: left;
 			width:47%;
 			clear: left;
+		}
+		
+		h2 {
+			font-size: 1.3em;
 		}
 
 		figure.alignone,
@@ -71,7 +98,12 @@
 		figure {			
 			figcaption {
 				padding:.5em 0;
-			}	
+			}
+			.wp-caption-text {
+				width:300px;
+				font-size:.8em;
+				color:#636363;
+			}
 		}
 	}
 	
@@ -125,6 +157,8 @@
 
 				.gallery-caption {
 					padding-top:.5em;
+				font-size:.8em;
+				color:#636363;
 				}
 			
 			}

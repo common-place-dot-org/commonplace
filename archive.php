@@ -1,7 +1,7 @@
 <?php
 /**
  * The template for displaying archive pages.
- *Template Name: Archives
+ *Template Name: Archive
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
  * @package commonplace
@@ -11,50 +11,78 @@ $args=array(
 			'post_status'      => 'publish'
 		);
 
-get_header();?>
+get_header();
 
-<?php wp_dropdown_categories( 'hide_empty=0' ); ?>
+$args = array(
+			'posts_per_page'   => 20,
+			'orderby'          => 'menu_order',
+			'order'            => 'DESC',
+			'post_type'        => 'article',
+			'post_status'      => 'publish');
 
+$my_query = new WP_Query( $args );
+
+?>
+
+
+<style>
+.beautiful-taxonomy-filters-button{
+	background-color:#800924;
+}
+.beautiful-taxonomy-filters-button:hover{
+	background-color:#67081E;
+}
+.beautiful-taxonomy-filters-label {text-transform: capitalize;}
+
+
+</style>
 		<section id="primary" class="content-area">
 			<main id="main" class="site-main" role="main">
 
-		  <?php if(function_exists('show_beautiful_filters')){ show_beautiful_filters(); }
-			if ( have_posts() ) : ?>
+		  <?php echo show_beautiful_filters('article');
+			if ( $my_query->have_posts() ) {?>
+				<h4> Most recent articles </h4>
+				<table class="table table-responsive">
+					<thead>
+					<tr>
+						<th>Issue</th>
+						<th>Title</th>
+						<th>Column</th>
+						<th>Author</th>
+					</tr>
+					</thead>
+					<tbody>
 
-				<header class="page-header">
-					<?php
-						the_archive_title( '<h1 class="page-title">', '</h1>' );
-						the_archive_description( '<div class="taxonomy-description">', '</div>' );
-					?>
-				</header><!-- .page-header -->
-
+			<?php
+				while ( $my_query->have_posts() ) {
+					$my_query->the_post();?>
+					<tr>
+								<td>
+									<?php $issues=get_the_terms($post->ID,'issue');
+									foreach($issues as $issue){
+										echo "<p>".$issue->name."</p>";
+									}
+									?>
+								</td>
+								<td><a href="<?php the_permalink(); ?>"><?php the_title();?></a></td>
+									<td><?php $issues=get_the_terms($post->ID,'column');
+								foreach($issues as $issue){
+									echo "<p>".$issue->name."</p>";
+								}
+								?></td>
+								<td><?php the_field('author_first_name');?> <?php the_field('author_last_name');?></td>
+							</tr>
+				
 				<?php
-				// Start the Loop.
-				while ( have_posts() ) : the_post();
+				}?>
+				</tbody>
+				</table>
+				<?php 
 
-					/*
-					 * Include the Post-Format-specific template for the content.
-					 * If you want to override this in a child theme, then include a file
-					 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-					 */
-					get_template_part( 'content', get_post_format() );
+			}
+			wp_reset_postdata();?>
 
-				// End the loop.
-				endwhile;
 
-				// Previous/next page navigation.
-				the_posts_pagination( array(
-					'prev_text'          => __( 'Previous page', 'twentyfifteen' ),
-					'next_text'          => __( 'Next page', 'twentyfifteen' ),
-					'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'twentyfifteen' ) . ' </span>',
-				) );
-
-			// If no content, include the "No posts found" template.
-			else :
-				get_template_part( 'content', 'none' );
-
-			endif;
-			?>
 
 			</main><!-- .site-main -->
 		</section><!-- .content-area -->

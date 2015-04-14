@@ -21,25 +21,25 @@
 <body <?php body_class(); ?>>
 	<div id="page" class="container">
 		<a class="skip-link sr-only" href="#content"><?php _e( 'Skip to content', 'gazette' ); ?></a>
-		<header id="masthead" class="page-header" role="banner">
+		<header id="masthead" role="banner">
 			<div class="row">
 				<div class="col-sm-4 col-sm-offset-4">
 					<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-						<?php bloginfo( 'name' ); ?><br/>
-						<small class="site-description">
-							<?php bloginfo( 'description' ); ?>
-						</small>
+						<img src="<?php bloginfo('template_url'); ?>/img/logo.png" alt="<?php bloginfo( 'name' ); ?> : 
+							<?php bloginfo( 'description' ); ?>"/>
+						
 					</a></h1>
 				</div>
 				<div class="col-sm-4">
-					<a href="#">Subscribe</a>
+<!-- Commented out for demo... 					<a href="#">Subscribe</a>
 					<?php get_search_form( true ); ?>
+					
+					-->
 				</div>
 			</div>
 			<nav id="site-navigation" class="navbar navbar-default" role="navigation">
-				<div class="container-fluid">
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<div class="collapse navbar-collapse" id="columns-nav">
 						<?php 
 							$defaults = array(
 								'theme_location'  => 'primary',
@@ -52,8 +52,6 @@
 							?>
 					</div>
 					<!-- /.navbar-collapse --> 
-				</div>
-				<!-- .container-fluid --> 
 			</nav>
 			<!-- #site-navigation --> 
 		</header>

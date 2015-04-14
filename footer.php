@@ -9,11 +9,7 @@
 ?>
 </div>
 <!-- #content -->
-<?php if ( is_active_sidebar( 'sidebar-footer' ) ) { ?>
-	<div id="promos" class="row">
-		<?php dynamic_sidebar( 'sidebar-footer' ); ?>
-	</div>
-<?php }; ?>
+
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
 		<div class="collapse navbar-collapse">
@@ -35,9 +31,8 @@
 		</div>
 	</div>
 </nav>
-<footer id="colophon" class="site-footer" role="contentinfo">
-	<div class="site-info">
-	<ul>
+<footer class="site-footer">
+	<ul id="footer-list">
 		<li><span id="copyright">&copy; <?php echo date("Y"); ?> Common-place.</span> <span id="issn">ISSN 1544-824X</span></li>
 		<li><a href="<?php echo site_url(); ?>/wp-admin/">Editor Login</a></li>
 		<?php
@@ -54,9 +49,7 @@
 		}
 		?>
 	</ul>
-	<!-- .site-info --> 
 </footer>
-<!-- #colophon -->
 </div>
 <!-- #page -->
 <?php wp_footer(); ?>

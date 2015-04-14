@@ -7,14 +7,13 @@
 
 get_header(); ?>
 <div id="primary" class="content-area">
-	<main id="main" class="site-main" role="main">
+	<main id="main" class="site-main article-view" role="main">
 		<?php while ( have_posts() ) : the_post(); ?>
 		
 			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 				<header class="entry-header">
 					<ol class="breadcrumb">
 						<li>
-							Issue 
 							<?php 
 								$thisPost = get_the_ID();
 								echo get_the_term_list($thisPost, 'issue');
@@ -47,10 +46,19 @@ get_header(); ?>
 			</article><!-- #post-## -->
 			
 		<?php endwhile; // end of the loop. ?>
-	
-	<h1>Chicago Citation</h1>
+	<div id="author-info">
+		<p>
+			<strong>About <?php  
+							echo the_field('author_first_name',$post->ID);
+							echo ' ';
+							echo the_field('author_last_name',$post->ID); ?>
+							</strong> <br/><span><?php echo the_field('author_bio',$post->ID) ?></span>
+		</p>
+	</div>
+	<div id="citation">
+	<h2>Chicago Citation</h2>
 	<p><?php chicago_citation(get_post()); ?> </p>
-	
+	</div>
 	</main><!-- #main -->
 </div><!-- #primary -->
 

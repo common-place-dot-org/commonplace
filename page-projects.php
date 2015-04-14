@@ -17,7 +17,6 @@ get_header();
 			<h1><?php the_title()?></h1>
 			<?php the_content();?>
 		<?php endwhile; endif; ?>
-		<hr/>
 	</div>
 </div>
 <div class="row">
@@ -34,11 +33,11 @@ get_header();
 			$projectLink = $arr['url'];
 		}
 		
-		echo '<h3><a href="'. $projectLink .'">'. get_the_title().'</a></h3>';
+		//echo '<h3><a href="'. $projectLink .'">'. get_the_title().'</a></h3>';
 		echo '<a href="'.  $projectLink.'">';
 		the_post_thumbnail('post-thumbnail', array('class' => "attachment-$size img-responsive"));
-		echo '</a>';
-		echo '<div class="article-excerpt">'. the_excerpt() .'</div>';
+		echo '</a><br/><br/>';
+		echo '<div class="article-excerpt">'. the_excerpt() .'</div><br/><br/><br/><br/>';
 		print_r($thumb);
 	}
 	?>
