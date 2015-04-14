@@ -1,0 +1,202 @@
+/* Scss Document */
+
+
+/* ******************
+
+	Article Page
+
+*/
+
+
+
+
+.article-view {
+}
+
+.single-article {
+	
+	#citation {
+		h2 {
+			font-size:1em;
+			font-weight:normal;	
+		}
+	}
+
+	#main {
+		background-color:white;
+		padding:50px;
+		-webkit-box-shadow: 0 1px 5px 0 #aaa;  
+		-moz-box-shadow:    0 1px 5px 0 #aaa; 
+		box-shadow:         0 1px 5px 0 #aaa;  
+	}
+	
+	.breadcrumb {
+		
+	}
+	
+	.entry-title {
+		color:black;
+	}
+
+	.entry-excerpt {
+		font-family:"Georgia", serif;
+		font-style:italic;	
+		
+		p {
+			margin-bottom:0;
+		}
+	}
+
+
+	.entry-content {
+
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6,
+		p,
+		pre,
+		ul,
+		ol,
+		figure,
+		hr {
+			float: left;
+			width:47%;
+			clear: left;
+		}
+		
+		h2 {
+			font-size: 1.3em;
+		}
+
+		figure.alignone,
+		figure.alignright,
+		blockquote {
+			float: right;
+			width: 47%;
+			margin:0;
+			clear:right;
+			margin-bottom:6%;
+			p {
+				float:none;
+				width:auto;	
+			}
+			
+		}
+
+		blockquote.center {
+			float: left;
+			width: 90%;
+			text-align: center;
+
+			margin: 6% auto;
+		}
+
+		
+		figure {			
+			figcaption {
+				padding:.5em 0;
+			}
+			.wp-caption-text {
+				width:300px;
+				font-size:.8em;
+				color:#636363;
+			}
+		}
+	}
+	
+	/*
+	blockquote {
+		padding:0;
+		margin:0;		
+		height:0;
+		border:none;
+
+		* {
+			position:relative;
+			left:100%;
+			margin-left:$grid-gutter-width;	
+		}
+
+		&.center {
+
+			width:150%;
+			background-color: yellow;
+			position: relative;
+			left: 25%;
+			margin: 2em 0;
+			text-align: center;
+
+			height: inherit;
+			* {
+				left:0;
+				margin-left: 0;
+			}
+		}
+		
+	}
+	*/
+	.gallery {
+		float: left;
+		clear: both;
+		.gallery-item {
+			float:left;
+			
+			.gallery-item-wrap {
+				
+				padding: $grid-gutter-width/2;
+
+				.gallery-icon {
+					img {
+						width:100%;
+						height:auto;
+					}
+				}
+
+				.gallery-caption {
+					padding-top:.5em;
+				font-size:.8em;
+				color:#636363;
+				}
+			
+			}
+			
+
+		
+			&:first-child {
+				.gallery-item-wrap {
+					padding-left:0;	
+				}
+			}
+			&:last-child {
+				.gallery-item-wrap {
+					padding-right:0;	
+				}
+			}
+		
+		}
+		
+		
+	}
+}
+
+
+// image default (right)
+
+// image - center (full width)
+
+// image - left
+
+
+// blockquote - default (right)
+
+
+
+
+// blockquote - full width
+
+// blockquote - left
+
+

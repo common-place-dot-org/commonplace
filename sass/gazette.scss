@@ -1,0 +1,186 @@
+
+// Override Bootstrap Variables
+@import "override-bootstrap-variables.scss";
+
+// Import the Bootstrap SASS
+@import "../vendor/bootstrap-sass-3.3.2/assets/stylesheets/bootstrap.scss";
+
+// Import the main Gazette SASS
+
+
+
+body {
+	background:white url(../img/bg50.png);
+}
+
+#columns-nav {
+
+	a {
+		font-style:italic;
+	}
+	
+}
+
+
+	
+	.column-title {
+		
+		font-size: 1em;
+		text-transform:uppercase;
+		letter-spacing:1px;
+		
+		a {
+			
+			color:#800924;
+			
+			&:hover {
+				color:#800924;	
+			}
+			
+		}
+		
+	}
+
+	.article-title {
+		
+		font-size:1.1em;
+		
+		a {
+			color:black;
+		}
+	}
+	
+
+	#roundtables {
+		
+		.article-title {
+			font-size:1em;	
+		}
+			
+	}
+		
+
+
+#sponsors {
+	
+		#sponsor-aas h4 {
+			font-size: 1em;
+			a {
+				color:#800924;	
+			}
+		}
+	
+		#sponsor-uconn {
+			img {
+				position:relative;
+				top:.6em;
+			}
+			h4 {
+				font-size: 1.1em;
+	
+				a {
+					color:#103963;	
+				}
+			}
+		}
+		
+	}
+	.article-author {
+		font-size:12px;
+		font-style:italic;
+	}
+.article-excerpt {
+	font-size:12px;
+		margin-bottom:1em;
+	
+}
+.article-img {
+	max-height:158px;
+	overflow:hidden;
+		margin-bottom:1em;
+	img {
+		min-height:158px;
+		
+		
+
+	}
+	border:1px solid white;
+	-webkit-box-shadow: 0 1px 4px 0 #bbb;  
+		-moz-box-shadow:    0 1px 4px 0 #bbb; 
+		box-shadow:         0 1px 4px 0 #bbb;  
+}
+
+#promos {
+	padding:40px 0;	
+}
+
+hr {
+	
+	border-top-color:#EDC2C2;
+	
+}
+
+.site-footer {
+	padding:10px 0 30px 0;
+}
+#footer-list {
+	margin:0;
+	padding:0;
+	list-style-type:none;
+	
+	li {
+		margin:0;
+		padding:0;
+		list-style-type:none;
+		display:inline;
+		margin-right:2em;
+	}
+}
+.issue-meta {
+	font:.8em "Georgia", serif;
+	text-transform: uppercase;
+	letter-spacing:1px;	
+}
+
+
+.page-template-page-column {
+	#content {
+	
+		padding-bottom:30px;
+			
+	}
+		
+	h1 {
+		color:black;
+		font-size:1.2em;
+		text-transform:uppercase;
+		letter-spacing:1px;
+		font-weight:normal;
+	}
+	h2 {
+		
+		font-size:1.2em;
+	}
+	.article-title {
+		font-size:1.2em;
+		a {
+			color:black;
+		}
+	}
+}
+
+.page-template-default {
+#main {
+		background-color:white;
+		padding:50px 200px;
+		-webkit-box-shadow: 0 1px 5px 0 #aaa;  
+		-moz-box-shadow:    0 1px 5px 0 #aaa; 
+		box-shadow:         0 1px 5px 0 #aaa;  
+		margin-bottom:30px;
+	}
+}
+@import "article.scss";
+
+.widget-title {
+	font-size:1.2em;
+}
