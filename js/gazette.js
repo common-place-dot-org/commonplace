@@ -11,5 +11,12 @@ jQuery(document).ready(function($) {
 		});	
 	}
 	
-	bsearchformBootstrapper()
+	function bsearchformResultsFormat(){
+		$('.bsearch_nav').insertAfter('.bsearch_footer');
+	}
+	
+	
+	bsearchformBootstrapper();
+	bsearchformResultsFormat();
+	
 });
