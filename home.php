@@ -6,67 +6,23 @@
 */
 get_header();
 
-global $wp_query;
-
 $current_issue=$wpdb->get_var( "SELECT option_value FROM wp_options WHERE option_name='current_issue'");
 
 $extra_issue=$wpdb->get_var( "SELECT option_value FROM wp_options WHERE option_name='extra_issue'");
 
 $issue_id=$wpdb->get_var($wpdb->prepare("SELECT term_id FROM wp_terms WHERE name=%s",$current_issue));
 
-$features_args = array(
-			'posts_per_page'   => -1,
-			'orderby'          => 'menu_order',
-			'order'            => 'DESC',
-			'post_type'        => 'article',
-			'post_status'      => 'publish',
-			'column' 			 => 'features',
-			'tax_query'		 => array(
-										array(
-										'taxonomy'  			=> 'issue',
-										'field'     			=> 'term_id',
-										'terms'     			=> $issue_id,
-										'include_children' 	=> $extra_issue,
-										'operator'  			=> 'IN'
-									)git
-									)
-		);
 
-		// ** Roundtable query
-		$roundtables_args = array(
-				'posts_per_page'   => -1,
-				'orderby'          => 'menu_order',
-				'order'            => 'DESC',
-				'post_type'        => 'article',
-				'post_status'      => 'publish',
-				'column' 			 => 'roundtable',
-				'tax_query'		 => array(
-											array(
-											'taxonomy'  			=> 'issue',
-											'field'     			=> 'term_id',
-											'terms'     			=> $issue_id,
-											'include_children' 	=> $extra_issue,
-											'operator'  			=> 'IN'
-											)
-										)
-		);
-
-
-
-
-
-$features_query = new WP_Query($features_args);
-$features_count = $features_query->found_posts;
-
-$roundtables_query = new WP_Query($roundtables_args);
-$roundtables_count = $roundtables_query->found_posts;
-
+$issue_obj = get_term($issue_id, 'issue');
+$issue_slug = $issue_obj->slug;
+$issue_name = $issue_obj->name;
+$issue_description = $issue_obj->description;
 
 ?>
 
 
 <!-- Sample code for current issue image -->
-<?php
+<?php 
 	// if display_extra_issue is checked...
 	if ($extra_issue != 'false') {
 		include('inc/broadside-extra-issue.php');
@@ -74,7 +30,7 @@ $roundtables_count = $roundtables_query->found_posts;
 ?>
 <div class="main-issue" id="issue-<?php echo $issue_slug; ?>">
 	<p class="issue-meta">
-		<?php
+		<?php 
 			echo $issue_name .' : '. $issue_description ;
 		?>
 	</p>
@@ -87,6 +43,7 @@ $roundtables_count = $roundtables_query->found_posts;
 		<?php dynamic_sidebar( 'sidebar-footer' ); ?>
 	</div>
 <?php }; ?>
-<?php
+<?php 
 	get_footer();
 ?>
+
