@@ -25,35 +25,34 @@
 			<div class="row">
 				<div class="col-sm-4 col-sm-offset-4">
 					<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-						<img src="<?php bloginfo('template_url'); ?>/img/logo.png" alt="<?php bloginfo( 'name' ); ?> : 
+						<img src="<?php bloginfo('template_url'); ?>/img/logo.png" alt="<?php bloginfo( 'name' ); ?> :
 							<?php bloginfo( 'description' ); ?>"/>
-						
+
 					</a></h1>
 				</div>
 				<div class="col-sm-4">
-<!-- Commented out for demo... 					<a href="#">Subscribe</a>
-					<?php get_search_form( true ); ?>
-					
-					-->
+				<a href="#">Subscribe</a>
+					<?php $form = get_bsearch_form();
+					echo $form;	?>
 				</div>
 			</div>
 			<nav id="site-navigation" class="navbar navbar-default" role="navigation">
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
 					<div class="collapse navbar-collapse" id="columns-nav">
-						<?php 
+						<?php
 							$defaults = array(
 								'theme_location'  => 'primary',
 								'container'       => false,
 								'menu_class'      => 'nav navbar-nav',
 								'depth' => '1'
-							);	
+							);
 							wp_nav_menu( $defaults );
-							
+
 							?>
 					</div>
-					<!-- /.navbar-collapse --> 
+					<!-- /.navbar-collapse -->
 			</nav>
-			<!-- #site-navigation --> 
+			<!-- #site-navigation -->
 		</header>
 		<!-- #masthead -->
 		<div id="content" class="site-content">
