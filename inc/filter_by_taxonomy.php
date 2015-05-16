@@ -1,5 +1,4 @@
 <?php
-
 function add_taxonomy_filters() {
 	global $typenow;
 

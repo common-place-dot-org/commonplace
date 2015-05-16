@@ -1,3 +1,5 @@
+
+
 <?php
 /**
  * commonplace functions and definitions
@@ -62,7 +64,7 @@ function gazette_scripts() {
 
 	wp_enqueue_script( 'gazette-modernizr', get_template_directory_uri() . '/js/vendor/custom.modernizr.js', array( 'jquery' ), false, true );
 	wp_enqueue_script( 'gazette-bootstrap', get_template_directory_uri() . '/vendor/bootstrap-sass-3.3.2/assets/javascripts/bootstrap.min.js', array( 'jquery' ), false, true );
-	wp_enqueue_script( 'gazette-modernizr', get_template_directory_uri() . '/js/gazette.js', array( 'jquery' ), false, true );
+	wp_enqueue_script( 'gazette-js', get_template_directory_uri() . '/js/gazette.js', array( 'jquery' ), false, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
