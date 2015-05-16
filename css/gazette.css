@@ -7126,61 +7126,21 @@ body {
   background: white url(../img/bg50.png);
 }
 
-#columns-nav a {
-  font-style: italic;
-}
-
-.column-title {
-  font-size: 1em;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-.column-title a {
-  color: #800924;
-}
-.column-title a:hover {
-  color: #800924;
-}
-
-.article-title {
+.page-template-home .article-title {
   font-size: 1.1em;
 }
-.article-title a {
+.page-template-home .article-title a {
   color: black;
 }
-
-#roundtables .article-title {
-  font-size: 1em;
-}
-
-#sponsors #sponsor-aas h4 {
-  font-size: 1em;
-}
-#sponsors #sponsor-aas h4 a {
-  color: #800924;
-}
-#sponsors #sponsor-uconn img {
-  position: relative;
-  top: .6em;
-}
-#sponsors #sponsor-uconn h4 {
-  font-size: 1.1em;
-}
-#sponsors #sponsor-uconn h4 a {
-  color: #103963;
-}
-
-.article-author {
+.page-template-home .article-author {
   font-size: 12px;
   font-style: italic;
 }
-
-.article-excerpt {
+.page-template-home .article-excerpt {
   font-size: 12px;
   margin-bottom: 1em;
 }
-
-.article-img {
+.page-template-home .article-img {
   max-height: 158px;
   overflow: hidden;
   margin-bottom: 1em;
@@ -7189,12 +7149,45 @@ body {
   -moz-box-shadow: 0 1px 4px 0 #bbb;
   box-shadow: 0 1px 4px 0 #bbb;
 }
-.article-img img {
+.page-template-home .article-img img {
   min-height: 158px;
 }
-
-#promos {
+.page-template-home .issue-meta {
+  font: .8em "Georgia", serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.page-template-home #roundtables .article-title {
+  font-size: 1em;
+}
+.page-template-home #promos {
   padding: 40px 0;
+}
+.page-template-home .column-title {
+  font-size: 1em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.page-template-home .column-title a {
+  display: block;
+  position: relative;
+  padding-left: 24px;
+  color: #800924;
+  font-size: 13px;
+}
+.page-template-home .column-title a img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 17px;
+  max-width: 17px;
+}
+.page-template-home .column-title a:hover {
+  color: #800924;
+}
+
+#columns-nav a {
+  font-style: italic;
 }
 
 hr {
@@ -7204,24 +7197,17 @@ hr {
 .site-footer {
   padding: 10px 0 30px 0;
 }
-
-#footer-list {
+.site-footer #footer-list {
   margin: 0;
   padding: 0;
   list-style-type: none;
 }
-#footer-list li {
+.site-footer #footer-list li {
   margin: 0;
   padding: 0;
   list-style-type: none;
   display: inline;
   margin-right: 2em;
-}
-
-.issue-meta {
-  font: .8em "Georgia", serif;
-  text-transform: uppercase;
-  letter-spacing: 1px;
 }
 
 .page-template-page-column #content {
@@ -7251,6 +7237,10 @@ hr {
   -moz-box-shadow: 0 1px 5px 0 #aaa;
   box-shadow: 0 1px 5px 0 #aaa;
   margin-bottom: 30px;
+}
+
+.widget-title {
+  font-size: 1.2em;
 }
 
 /* Scss Document */
@@ -7302,20 +7292,6 @@ hr {
   -webkit-box-shadow: 0 1px 5px 0 #aaa;
   -moz-box-shadow: 0 1px 5px 0 #aaa;
   box-shadow: 0 1px 5px 0 #aaa;
-  margin-bottom: 30px;
-}
-.single-article .breadcrumb {
-  background-color: transparent;
-  padding: 0;
-}
-.single-article .breadcrumb a {
-  color: #800924;
-}
-.single-article .breadcrumb a + a {
-  margin-left: .3em;
-}
-.single-article .breadcrumb a + a:before {
-  content: ': ';
 }
 .single-article .entry-title {
   color: black;
@@ -7399,8 +7375,4 @@ hr {
 }
 .single-article .gallery .gallery-item:last-child .gallery-item-wrap {
   padding-right: 0;
-}
-
-.widget-title {
-  font-size: 1.2em;
 }

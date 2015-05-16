@@ -7,149 +7,128 @@
 
 // Import the main Gazette SASS
 
+// Variables
 
+$darkred : #800924;
 
 body {
 	background:white url(../img/bg50.png);
 }
-
-#columns-nav {
-
-	a {
-		font-style:italic;
+#masthead {
+	.site-title{
 	}
-	
+	#site-navigation {	
+	}
 }
-
-
-	
-	.column-title {
-		
-		font-size: 1em;
-		text-transform:uppercase;
-		letter-spacing:1px;
-		
-		a {
-			
-			color:#800924;
-			
-			&:hover {
-				color:#800924;	
-			}
-			
-		}
-		
-	}
-
+.page-template-home {
 	.article-title {
-		
 		font-size:1.1em;
-		
+	
 		a {
 			color:black;
 		}
-	}
-	
-
-	#roundtables {
-		
-		.article-title {
-			font-size:1em;	
-		}
-			
-	}
-		
-
-
-#sponsors {
-	
-		#sponsor-aas h4 {
-			font-size: 1em;
-			a {
-				color:#800924;	
-			}
-		}
-	
-		#sponsor-uconn {
-			img {
-				position:relative;
-				top:.6em;
-			}
-			h4 {
-				font-size: 1.1em;
-	
-				a {
-					color:#103963;	
-				}
-			}
-		}
-		
 	}
 	.article-author {
 		font-size:12px;
 		font-style:italic;
 	}
-.article-excerpt {
-	font-size:12px;
+	.article-excerpt {
+		font-size:12px;
 		margin-bottom:1em;
-	
-}
-.article-img {
-	max-height:158px;
-	overflow:hidden;
-		margin-bottom:1em;
-	img {
-		min-height:158px;
-		
-		
-
 	}
-	border:1px solid white;
-	-webkit-box-shadow: 0 1px 4px 0 #bbb;  
+	.article-img {
+		max-height:158px;
+		overflow:hidden;
+		margin-bottom:1em;
+		border:1px solid white;
+		-webkit-box-shadow: 0 1px 4px 0 #bbb;  
 		-moz-box-shadow:    0 1px 4px 0 #bbb; 
-		box-shadow:         0 1px 4px 0 #bbb;  
+		box-shadow:         0 1px 4px 0 #bbb; 
+		
+		img {
+			min-height:158px;
+		}	 
+	}
+	.issue-meta {
+		font:.8em "Georgia", serif;
+		text-transform: uppercase;
+		letter-spacing:1px;	
+	}
+	#roundtables {
+		.article-title {
+			font-size:1em;	
+		}	
+	}
+	#promos {
+		padding:40px 0;	
+	}
+	.site-footer {
+		#footer-list {
+			
+		}
+	}
+	.column-title {
+		font-size: 1em;
+		text-transform:uppercase;
+		letter-spacing:1px;
+		
+		a {
+			display:block;
+			position:relative;
+			padding-left: 24px;
+			color:$darkred;
+			font-size:13px;
+			
+			img {
+				position:absolute;
+				top:0;
+				left:0;
+				height:17px;
+				max-width:17px;
+			}
+			
+			&:hover {
+				color:$darkred;	
+			}	
+		}
+		
+	}
 }
 
-#promos {
-	padding:40px 0;	
+
+
+#columns-nav {
+	a {
+		font-style:italic;
+	}
 }
 
 hr {
-	
 	border-top-color:#EDC2C2;
-	
 }
 
 .site-footer {
 	padding:10px 0 30px 0;
-}
-#footer-list {
-	margin:0;
-	padding:0;
-	list-style-type:none;
-	
-	li {
+
+	#footer-list {
 		margin:0;
 		padding:0;
 		list-style-type:none;
-		display:inline;
-		margin-right:2em;
+		
+		li {
+			margin:0;
+			padding:0;
+			list-style-type:none;
+			display:inline;
+			margin-right:2em;
+		}
 	}
 }
-.issue-meta {
-	font:.8em "Georgia", serif;
-	text-transform: uppercase;
-	letter-spacing:1px;	
-}
-
 
 .page-template-page-column {
 	#content {
-	
 		padding-bottom:30px;
-			
 	}
-		
 	h1 {
 		color:black;
 		font-size:1.2em;
@@ -170,7 +149,7 @@ hr {
 }
 
 .page-template-default {
-#main {
+	#main {
 		background-color:white;
 		padding:50px 200px;
 		-webkit-box-shadow: 0 1px 5px 0 #aaa;  
@@ -179,8 +158,8 @@ hr {
 		margin-bottom:30px;
 	}
 }
-@import "article.scss";
-
 .widget-title {
 	font-size:1.2em;
 }
+@import "article.scss";
+
