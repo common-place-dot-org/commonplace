@@ -23,17 +23,29 @@
 		<a class="skip-link sr-only" href="#content"><?php _e( 'Skip to content', 'gazette' ); ?></a>
 		<header id="masthead" role="banner">
 			<div class="row">
-				<div class="col-sm-4 col-sm-offset-4">
-					<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-						<img src="<?php bloginfo('template_url'); ?>/img/logo.png" alt="<?php bloginfo( 'name' ); ?> :
-							<?php bloginfo( 'description' ); ?>"/>
-
-					</a></h1>
+				<div class="col-sm-4">
+					<?php 
+						if (wp_get_nav_menu_object('Header Left')){
+							$defaults = array(
+								'menu'			=> 'Header Left',
+								'container'       => false,
+								'items_wrap'      => '<ul id="%1$s" class="%2$s nav nav-pills">%3$s</ul>',
+								'depth'			=> 1,
+								'fallback_cb'		=> false
+							);
+							wp_nav_menu( $defaults );
+						}
+					?>
+				</div>				
+				<div class="col-sm-4">
+					<h1 class="site-title">
+						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+							<img src="<?php bloginfo('template_url'); ?>/img/logo.png" alt="<?php bloginfo( 'name' ); ?> : <?php bloginfo( 'description' ); ?>"/>
+						</a>
+					</h1>
 				</div>
 				<div class="col-sm-4">
-				<a href="#">Subscribe</a>
-					<?php $form = get_bsearch_form();
-					echo $form;	?>
+					<?php echo get_bsearch_form(); ?>
 				</div>
 			</div>
 			<nav id="site-navigation" class="navbar navbar-default" role="navigation">

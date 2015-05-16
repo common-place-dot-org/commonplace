@@ -1,6 +1,6 @@
 
 // Override Bootstrap Variables
-@import "override-bootstrap-variables.scss";
+@import "_override-bootstrap-variables.scss";
 
 // Import the Bootstrap SASS
 @import "../vendor/bootstrap-sass-3.3.2/assets/stylesheets/bootstrap.scss";
@@ -15,10 +15,17 @@ body {
 	background:white url(../img/bg50.png);
 }
 #masthead {
+	#menu-header-left {
+		margin-top:40px;	
+	}
 	.site-title{
+	}
+	.bsearchform {
+		margin-top:40px;	
 	}
 	#site-navigation {	
 	}
+	
 }
 .page-template-home {
 	.article-title {
@@ -161,5 +168,5 @@ hr {
 .widget-title {
 	font-size:1.2em;
 }
-@import "article.scss";
+@import "_article.scss";
 

@@ -7126,6 +7126,13 @@ body {
   background: white url(../img/bg50.png);
 }
 
+#masthead #menu-header-left {
+  margin-top: 40px;
+}
+#masthead .bsearchform {
+  margin-top: 40px;
+}
+
 .page-template-home .article-title {
   font-size: 1.1em;
 }
