@@ -61,9 +61,17 @@ echo var_dump($roundtables_count);
 
 
 <hr/>
+
 <div class="row" id="main-center">
 <div class="col-sm-4">
-	<h3 class="column-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>column/features">Reviews</a></h3>
+	<h3 class="column-title">
+		<?php $reviews = get_term_by('slug', 'reviews', 'column');?>
+		<a href="<?php echo get_term_link($reviews->term_id, 'column'); ?>">
+			<img src="<?php echo z_taxonomy_image_url($reviews->term_id); ?>" />
+			Reviews
+		</a>
+	</h3>
+	
 	<?php 
 	$query = new WP_Query($reviews_args);
 	while ( $query->have_posts() ) {
@@ -106,22 +114,34 @@ echo var_dump($roundtables_count);
 			}?>
 			
 			<div class="col-sm-4">
-				<h3 class="column-title"><?php echo get_the_term_list( $post->ID, 'column');?> </h3>
+				<h3 class="column-title">
+					<?php foreach (get_the_terms(get_the_ID(), 'column') as $cat) : ?>
+						<a href="<?php echo get_term_link($cat->term_id, 'column'); ?>">
+							<img src="<?php echo z_taxonomy_image_url($cat->term_id); ?>" />
+							<?php echo $cat->name; ?>
+						</a>
+					<?php endforeach; ?>
+				</h3>
 				<figure class="article-img">
-								<a href="<?php the_permalink();?>"><? if ( has_post_thumbnail() ) {
-											the_post_thumbnail('post-thumbnail', array(
-											'class' => "attachment-$size img-responsive",
-											));
-										};?></a>
-							</figure>
-								<h4 class="article-title"><a href="<?php the_permalink(); ?>"><?php the_title();?></a></h4>
-
-
-				<div class="article-excerpt"><span class="article-author"><?php  
-							echo the_field('author_first_name',$post->ID);
-							echo ' ';
-							echo the_field('author_last_name',$post->ID); ?>
-							</span><?php the_excerpt();?></div>
+					<a href="<?php the_permalink();?>"><? if ( has_post_thumbnail() ) {
+						the_post_thumbnail('post-thumbnail', array(
+						'class' => "attachment-$size img-responsive",
+						));
+					};?></a>
+				</figure>
+				<h4 class="article-title"><a href="<?php the_permalink(); ?>"><?php the_title();?></a></h4>
+	
+	
+				<div class="article-excerpt">
+					<span class="article-author">
+					<?php  
+						echo the_field('author_first_name',$post->ID);
+						echo ' ';
+						echo the_field('author_last_name',$post->ID); 
+					?>
+					</span>
+					<?php the_excerpt();?>
+				</div>
 			</div>
 				
 				

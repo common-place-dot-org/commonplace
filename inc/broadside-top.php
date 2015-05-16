@@ -210,7 +210,14 @@ if ($roundtables_count > 0 ){
 <div class="row" id="main-top">
 	<div class="col-sm-<?php echo $features_grid;?>" id="features">
 		<header>
-			<h2 class="column-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>/column/features">Features</a></h2>
+			<h2 class="column-title">
+				<?php foreach (get_the_terms(get_the_ID(), 'column') as $cat) : ?>
+					<a href="<?php echo get_term_link($cat->term_id, 'column'); ?>">
+						<img src="<?php echo z_taxonomy_image_url($cat->term_id); ?>" />
+						<?php echo $cat->name; ?>
+					</a>
+				<?php endforeach; ?>
+			</h2>
 		</header>
 		<?php
 		// query the features.
