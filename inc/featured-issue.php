@@ -23,7 +23,7 @@ echo "<form method='post' action=".$_SERVER['PHP_SELF']."><p>Select current issu
 	echo "<option>".$issue_name."</option>";
  };
  echo "</select>";
- echo "<br><p>Include Extra Issues?</p><select name='extra_issue'>";
+ echo "<br><p>Include Interim Issue?</p><select name='extra_issue'>";
  $xi_false="false";
  $xi_true="true";
  echo "<option>".$xi_false."</option>";
