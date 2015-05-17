@@ -7131,6 +7131,7 @@ body {
 }
 #masthead .bsearchform {
   margin-top: 40px;
+  text-align: right;
 }
 
 .page-template-home .article-title {
