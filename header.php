@@ -10,15 +10,18 @@
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
+<title><?php wp_title('›', true, 'right'); ?>Common-place: The Journal of early American Life</title>
 <meta charset="<?php bloginfo( 'charset' ); ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>
-<?php wp_title( '|', true, 'right' ); ?>
-</title>
 <link type="text/plain" rel="author" href="<?php echo esc_url( home_url( '/' ) ); ?>/humans.txt" />
 <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
+	<nav id="skiplinks" class="sr-only">
+		<a href="#site-navigation">Skip to Navigation</a>
+		<a href="#search">Skip to Search</a>
+		<a href="#content">Skip to Content</a>
+	</nav>
 	<div id="page" class="container">
 		<a class="skip-link sr-only" href="#content"><?php _e( 'Skip to content', 'gazette' ); ?></a>
 		<header id="masthead" role="banner">
@@ -45,7 +48,9 @@
 					</h1>
 				</div>
 				<div class="col-sm-4">
-					<?php echo get_bsearch_form(); ?>
+					<div id="search">
+						<?php echo get_bsearch_form(); ?>
+					</div>
 				</div>
 			</div>
 			<nav id="site-navigation" class="navbar navbar-default" role="navigation">
