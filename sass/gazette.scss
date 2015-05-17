@@ -16,7 +16,7 @@ body {
 }
 #masthead {
 	#menu-header-left {
-		margin-top:40px;	
+		margin-top:40px;
 	}
 	.site-title{
 	}
@@ -103,6 +103,11 @@ body {
 	}
 }
 
+@media (max-width: 720px) {
+	.page-template-home .article-img img {
+		width:100%;
+	}
+}
 
 
 #columns-nav {
