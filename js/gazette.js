@@ -6,7 +6,7 @@ jQuery(document).ready(function($) {
 	function bsearchformBootstrapper(){
 		$('.bsearchform').each(function(){
 			$(this).children('.s').addClass('form-control');
-			$(this).children('.searchsubmit').addClass('btn btn-primary');
+			$(this).children('.searchsubmit').addClass('btn btn-primary').attr('value', 'Search');
 			$(this).addClass('form-group').addClass('form-inline');
 		});	
 	}
