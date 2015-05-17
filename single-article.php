@@ -58,6 +58,22 @@ get_header(); ?>
 	<div id="citation">
 	<h2>Chicago Citation</h2>
 	<p><?php chicago_citation(get_post()); ?> </p>
+	
+	<?php 
+	$topics = get_the_terms($post->ID,'topic');
+	
+	if ($topics){
+		echo '<p id="topics">Topic Tags: ';
+		foreach ($topics as $topic) {
+			//echo "$topic->name";	
+			//echo "$topic->slug";
+			$url = get_bloginfo('url');
+			echo '<a href="'.$url.'/book/topic/'.$topic->slug.'">'.$topic->name.'</a> ';
+		}
+		echo '</p>';
+	}
+	
+	?>
 	</div>
 	</main><!-- #main -->
 </div><!-- #primary -->
