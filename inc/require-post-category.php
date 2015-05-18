@@ -38,31 +38,32 @@ function rpc_admin_footer_post_func(){
 	global $post_type;
 	if($post_type=='article'){
 		echo "<script>
-jQuery(function($){
-	$('#publish, #save-post').click(function(e){
-		if($('#taxonomy-issue input:checked').length==0){
-			alert('" . __('Please select a Issue Number before publishing this post.', 'require-post-category') . "');
-			e.stopImmediatePropagation();
-			return false;
-		}else{
-			return true;
-		}
-	});
-	var publish_click_events = $('#publish').data('events').click;
-	if(publish_click_events){
-		if(publish_click_events.length>1){
-			publish_click_events.unshift(publish_click_events.pop());
-		}
-	}
-	if($('#save-post').data('events') != null){
-		var save_click_events = $('#save-post').data('events').click;
-		if(save_click_events){
-		  if(save_click_events.length>1){
-			  save_click_events.unshift(save_click_events.pop());
-		  }
-		}
-	}
-});
-</script>";
+		jQuery(function($){
+			$('#publish, #save-post').click(function(e){
+				if($('#taxonomy-issue input:checked').length==0){
+					alert('" . __('Please select a Issue Number before publishing this post.', 'require-post-category') . "');
+					e.stopImmediatePropagation();
+					return false;
+				}else{
+					return true;
+				}
+			});
+			var publish_click_events = $('#publish').data('events').click;
+			if(publish_click_events){
+				if(publish_click_events.length>1){
+					publish_click_events.unshift(publish_click_events.pop());
+				}
+			}
+			if($('#save-post').data('events') != null){
+				var save_click_events = $('#save-post').data('events').click;
+				if(save_click_events){
+				  if(save_click_events.length>1){
+					  save_click_events.unshift(save_click_events.pop());
+				  }
+				}
+			}
+		});
+		</script>";
 	}
 }
+?>

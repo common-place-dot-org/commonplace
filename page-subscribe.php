@@ -53,13 +53,14 @@ get_header();
 		<h2>RSS Feeds</h2>
 		<p>Master Feed</p>
 		<h3>Topic Feeds</h3>
+		<ul>
 		<?php 
 		$topics = get_terms( 'topic');
 		foreach ($topics as $topic) {
-			echo $topic->name;
-			echo $topic->slug;
+			echo '<li><a href="'.get_bloginfo(url) .'/'.$topic->slug.'">'.$topic->name.'</a></li>';
 		}
 		?>
+		</ul>
 		<h3>Column Feeds</h3>
 		<?php 
 		$columns = get_terms( 'column');

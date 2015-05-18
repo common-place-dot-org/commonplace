@@ -207,5 +207,4 @@ function my_article_sortable_columns( $columns ) {
 }
 
 add_filter( 'manage_edit-article_sortable_columns', 'my_article_sortable_columns' );
-
-
+?>

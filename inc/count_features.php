@@ -57,3 +57,4 @@
 };
 
 add_action(  'publish_article',  'add_issue_columns', 10 ,2);
+?>

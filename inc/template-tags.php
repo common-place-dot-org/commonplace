@@ -163,3 +163,4 @@ function commonplace_category_transient_flusher() {
 }
 add_action( 'edit_category', 'commonplace_category_transient_flusher' );
 add_action( 'save_post',     'commonplace_category_transient_flusher' );
+?>

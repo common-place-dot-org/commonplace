@@ -1,5 +1,3 @@
-
-
 <?php
 /**
  * commonplace functions and definitions
@@ -124,3 +122,4 @@ if(current_user_can('set_current_issue')){
 
 //Set new user roles
 require get_template_directory() . '/inc/add_roles.php';
+?>

@@ -124,3 +124,4 @@ function commonplace_admin_header_image() {
 <?php
 }
 endif; // commonplace_admin_header_image
+?>
