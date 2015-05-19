@@ -7179,16 +7179,17 @@ body {
 .page-template-home .column-title a {
   display: block;
   position: relative;
-  padding-left: 24px;
+  padding-left: 28px;
   color: #800924;
   font-size: 13px;
 }
 .page-template-home .column-title a img {
   position: absolute;
-  top: 0;
+  top: -4px;
   left: 0;
-  height: 17px;
-  max-width: 17px;
+  height: 21px;
+  max-width: 21px;
+  opacity: .7;
 }
 .page-template-home .column-title a:hover {
   color: #800924;
@@ -7519,4 +7520,13 @@ hr {
 }
 #colindex-roundtables article .col-sm-7 {
   width: 100%;
+}
+
+@media (max-width: 720px) {
+  .page-template-default #main {
+    padding: 20px !important;
+  }
+  .page-template-default #main .entry-title {
+    font-size: 18px;
+  }
 }

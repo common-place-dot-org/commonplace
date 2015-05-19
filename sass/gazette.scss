@@ -83,16 +83,17 @@ body {
 		a {
 			display:block;
 			position:relative;
-			padding-left: 24px;
+			padding-left: 28px;
 			color:$darkred;
 			font-size:13px;
 			
 			img {
 				position:absolute;
-				top:0;
+				top:-4px;
 				left:0;
-				height:17px;
-				max-width:17px;
+				height:21px;
+				max-width:21px;
+				opacity:.7;
 			}
 			
 			&:hover {
@@ -110,6 +111,7 @@ body {
 	#masthead #site-navigation {
 		margin-top:0;
 	}
+
 }
 
 
@@ -252,5 +254,20 @@ hr {
 		.col-sm-7 {
 			width:100%;
 		}
+	}
+}
+
+@media (max-width: 720px) {
+	.page-template-default {
+	
+		#main {
+			
+			padding:20px !important;
+		
+			.entry-title {
+				font-size:18px;	
+			}
+		}
+			
 	}
 }

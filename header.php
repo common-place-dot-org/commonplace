@@ -32,7 +32,7 @@
 	<div id="page" class="container">
 		<a class="skip-link sr-only" href="#content"><?php _e( 'Skip to content', 'gazette' ); ?></a>
 		<header id="masthead" role="banner">
-			<div class="row hidden-sm hidden-xs">
+			<div class="row hidden-xs">
 				<div class="col-sm-4">
 					<?php 
 						if (wp_get_nav_menu_object('Header Left')){
@@ -65,7 +65,7 @@
 				<div class="container-fluid"> 
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#columns-nav"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-						<a class="navbar-brand visible-sm-block visible-xs-block" href="#"><img src="<?php bloginfo('stylesheet_directory')?>/img/logo-mobile.png" alt="Common-place" width="190"/></a>
+						<a class="navbar-brand visible-xs-block" href="#"><img src="<?php bloginfo('stylesheet_directory')?>/img/logo-mobile.png" alt="Common-place" width="190"/></a>
 					</div>
 					<div class="collapse navbar-collapse" id="columns-nav">
 						<?php
@@ -79,7 +79,7 @@
 
 							?>
 							<hr class="visible-sm-block visible-xs-block"/>
-							<ul class="nav navbar-nav navbar-right visible-sm-block visible-xs-block">
+							<ul class="nav navbar-nav navbar-right visible-xs-block">
 								<li><a href="<?php bloginfo('wpurl')?>/archive">Search</a></li>
 								<li><a href="<?php bloginfo('wpurl')?>/subscribe">Subscribe</a></li>
 							</ul>
