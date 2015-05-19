@@ -25,6 +25,7 @@ body {
 		text-align:right;
 	}
 	#site-navigation {	
+		margin-top:40px;
 	}
 	
 }
@@ -237,3 +238,17 @@ hr {
 	}
 }
 
+.page-template-page-column .col-row {
+	margin-bottom:20px;
+}
+ 
+#colindex-roundtables {
+	article {
+		.col-sm-5 {
+			display:none;	
+		}
+		.col-sm-7 {
+			width:100%;
+		}
+	}
+}

@@ -11,6 +11,7 @@ Template Name: Column Index
 get_header();
 
 ?>
+<div id="colindex-<?php echo $post->post_name;?>">
 <div class="row">
 	<div class="col-sm-12">
 		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
@@ -20,14 +21,14 @@ get_header();
 	</div>
 </div>
 <div class="row">
-	<div class="col-sm-9">	
+	<div class="col-sm-12">	
 		
 		<?php 		
 				
 		$recent_args = array(	
 			'post_type' => 'article',
 			'orderby' => 'date',
-			'posts_per_page' => 4, 
+			'posts_per_page' => 10, 
 			'tax_query' => array(
 				array(
 					'taxonomy' => 'column',
@@ -44,7 +45,7 @@ get_header();
 		?>
 		
 		<?php if ($colCount % 2 != 0){ 
-			echo '<div class="row">';
+			echo '<div class="row col-row">';
 		}
 		
 		
@@ -76,25 +77,15 @@ get_header();
 			}	
 			$colCount++;
 			?>
-		
 		<?php endwhile;?>
 		<?php wp_reset_query(); ?>
-	
+		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+			<p><a href="<?php bloginfo('url')?>/book/column/<?php echo get_field('column_to_display')?>">Archives for <?php the_title()?> &raquo;</a></p>
+		<?php endwhile; endif; ?>
 		
-		
-		
-	</div>
-	<div class="col-sm-3">
-		<h2>Topics</h2>
-		<p>Topic Tags used by articles within this category, sorted in descending order by number of articles.</p>
-		<ul class="nav nav-pills nav-stacked">
-			<li><a href="#"><strong>TopicName</strong> <span class="badge">00</span></a></li>
-			<li><a href="#"><strong>TopicName</strong> <span class="badge">00</span></a></li>
-			<li><a href="#"><strong>TopicName</strong> <span class="badge">00</span></a></li>
-			<li><a href="#"><strong>TopicName</strong> <span class="badge">00</span></a></li>
-		</ul>
 	</div>
 </div><!-- /row-->
+</div>
 <?php 
 get_footer();
 ?>

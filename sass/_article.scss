@@ -9,6 +9,7 @@
 
 
 
+	
 
 .article-view {
 }
@@ -31,7 +32,11 @@
 	}
 	
 	.breadcrumb {
-		
+		background-color:transparent;
+		padding:0;
+		a {
+			margin-right:1em;
+		}
 	}
 	
 	.entry-title {
@@ -41,12 +46,41 @@
 	.entry-excerpt {
 		font-family:"Georgia", serif;
 		font-style:italic;	
+		font-size:1.5em;
+		
+		.well {
+			background-color:transparent;	
+			border-color:transparent;
+			padding-left:0;
+		}
 		
 		p {
 			margin-bottom:0;
 		}
 	}
 
+	figure {			
+		figcaption {
+			padding:.5em 0;
+		}
+		.wp-caption-text {
+			width:300px;
+			font-size:.8em;
+			color:#636363;
+		}
+	}
+	figure.aligncenter{
+		text-align:center;
+		padding:1em 0;
+		
+		img {
+			display:inline;
+		}
+		.wp-caption-text {
+			width:100%;
+		}
+	}
+	
 
 	.entry-content {
 
@@ -71,6 +105,8 @@
 			font-size: 1.3em;
 		}
 
+		img.alignnone,
+		img.alignright,
 		figure.alignone,
 		figure.alignright,
 		blockquote {
@@ -85,26 +121,46 @@
 			}
 			
 		}
+		
+		
+		blockquote.left {
+			float:none;
+			clear:left;	
+		}
 
 		blockquote.center {
 			float: left;
 			width: 90%;
 			text-align: center;
-
 			margin: 6% auto;
 		}
-
-		
-		figure {			
-			figcaption {
-				padding:.5em 0;
-			}
-			.wp-caption-text {
-				width:300px;
-				font-size:.8em;
-				color:#636363;
-			}
+		blockquote.large {
+			font-size:200%;
 		}
+		blockquote.xlarge {
+			font-size:300%;
+		}
+		blockquote.xxlarge {
+			font-size:400%;
+		}
+		blockquote.script {
+			font-family: "Georgia", serif;
+			font-style:italic;	
+		}
+		
+
+		img.alignleft   {
+			float:left;
+			margin:0 20px 20px 0;
+		}
+		img.alignright  {
+			float:right;
+			margin:0 0 20px 20px;
+		}
+		img.aligncenter {
+			margin:20px auto;	
+		}
+		
 	}
 	
 	/*
@@ -180,6 +236,13 @@
 		
 		
 	}
+}
+
+#author-info {
+	padding-top:30px;
+	margin-top:40px;
+	border-top:1px solid #ccc;
+	font-style:italic;
 }
 
 

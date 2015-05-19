@@ -7133,6 +7133,9 @@ body {
   margin-top: 40px;
   text-align: right;
 }
+#masthead #site-navigation {
+  margin-top: 40px;
+}
 
 .page-template-home .article-title {
   font-size: 1.1em;
@@ -7306,15 +7309,46 @@ hr {
   -moz-box-shadow: 0 1px 5px 0 #aaa;
   box-shadow: 0 1px 5px 0 #aaa;
 }
+.single-article .breadcrumb {
+  background-color: transparent;
+  padding: 0;
+}
+.single-article .breadcrumb a {
+  margin-right: 1em;
+}
 .single-article .entry-title {
   color: black;
 }
 .single-article .entry-excerpt {
   font-family: "Georgia", serif;
   font-style: italic;
+  font-size: 1.5em;
+}
+.single-article .entry-excerpt .well {
+  background-color: transparent;
+  border-color: transparent;
+  padding-left: 0;
 }
 .single-article .entry-excerpt p {
   margin-bottom: 0;
+}
+.single-article figure figcaption {
+  padding: .5em 0;
+}
+.single-article figure .wp-caption-text {
+  width: 300px;
+  font-size: .8em;
+  color: #636363;
+}
+.single-article figure.aligncenter {
+  text-align: center;
+  padding: 1em 0;
+}
+.single-article figure.aligncenter img {
+  display: inline;
+}
+.single-article figure.aligncenter .wp-caption-text {
+  width: 100%;
 }
 .single-article .entry-content h1,
 .single-article .entry-content h2,
@@ -7335,6 +7369,8 @@ hr {
 .single-article .entry-content h2 {
   font-size: 1.3em;
 }
+.single-article .entry-content img.alignnone,
+.single-article .entry-content img.alignright,
 .single-article .entry-content figure.alignone,
 .single-article .entry-content figure.alignright,
 .single-article .entry-content blockquote {
@@ -7344,11 +7380,17 @@ hr {
   clear: right;
   margin-bottom: 6%;
 }
+.single-article .entry-content img.alignnone p,
+.single-article .entry-content img.alignright p,
 .single-article .entry-content figure.alignone p,
 .single-article .entry-content figure.alignright p,
 .single-article .entry-content blockquote p {
   float: none;
   width: auto;
+}
+.single-article .entry-content blockquote.left {
+  float: none;
+  clear: left;
 }
 .single-article .entry-content blockquote.center {
   float: left;
@@ -7356,13 +7398,29 @@ hr {
   text-align: center;
   margin: 6% auto;
 }
-.single-article .entry-content figure figcaption {
-  padding: .5em 0;
+.single-article .entry-content blockquote.large {
+  font-size: 200%;
 }
-.single-article .entry-content figure .wp-caption-text {
-  width: 300px;
-  font-size: .8em;
-  color: #636363;
+.single-article .entry-content blockquote.xlarge {
+  font-size: 300%;
+}
+.single-article .entry-content blockquote.xxlarge {
+  font-size: 400%;
+}
+.single-article .entry-content blockquote.script {
+  font-family: "Georgia", serif;
+  font-style: italic;
+}
+.single-article .entry-content img.alignleft {
+  float: left;
+  margin: 0 20px 20px 0;
+}
+.single-article .entry-content img.alignright {
+  float: right;
+  margin: 0 0 20px 20px;
+}
+.single-article .entry-content img.aligncenter {
+  margin: 20px auto;
 }
 .single-article .gallery {
   float: left;
@@ -7388,6 +7446,13 @@ hr {
 }
 .single-article .gallery .gallery-item:last-child .gallery-item-wrap {
   padding-right: 0;
+}
+
+#author-info {
+  padding-top: 30px;
+  margin-top: 40px;
+  border-top: 1px solid #ccc;
+  font-style: italic;
 }
 
 .search-results #main .bsearchform {
@@ -7430,4 +7495,15 @@ hr {
 }
 .search-results #main .bsearch_nav {
   margin: 10px 0 30px;
+}
+
+.page-template-page-column .col-row {
+  margin-bottom: 20px;
+}
+
+#colindex-roundtables article .col-sm-5 {
+  display: none;
+}
+#colindex-roundtables article .col-sm-7 {
+  width: 100%;
 }
