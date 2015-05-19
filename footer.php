@@ -13,26 +13,26 @@
 
 <footer class="site-footer">
 	<nav class="navbar navbar-default">
-		<div class="container-fluid">
-			<div class="collapse navbar-collapse">
-				<ul class="nav navbar-nav">
-					<?php
-					// Only display the footer if a menu of "Footer" exists in the site. 
-					if (wp_get_nav_menu_object('Footer')){
-						$defaults = array(
-							'menu'			=> 'Footer',
-							'container'       => false,
-							'items_wrap'      => '%3$s',
-							'depth'			=> 1,
-							'fallback_cb'		=> false
-						);
-						wp_nav_menu( $defaults );
-					}
-					?>
-				</ul>
-			</div>
+	<div class="container-fluid">
+		<div class="">
+			<ul class="nav navbar-nav">
+				<?php
+				// Only display the footer if a menu of "Footer" exists in the site. 
+				if (wp_get_nav_menu_object('Footer')){
+					$defaults = array(
+						'menu'			=> 'Footer',
+						'container'       => false,
+						'items_wrap'      => '%3$s',
+						'depth'			=> 1,
+						'fallback_cb'		=> false
+					);
+					wp_nav_menu( $defaults );
+				}
+				?>
+			</ul>
 		</div>
-	</nav>
+	</div>
+</nav>
 	<ul id="footer-list">
 		<li><span id="copyright">&copy; <?php echo date("Y"); ?> Common-place.</span> <span id="issn">ISSN 1544-824X</span></li>
 		<li><a href="<?php echo site_url(); ?>/wp-admin/">Editor Login</a></li>

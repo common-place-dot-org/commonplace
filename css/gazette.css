@@ -7160,9 +7160,6 @@ body {
   -moz-box-shadow: 0 1px 4px 0 #bbb;
   box-shadow: 0 1px 4px 0 #bbb;
 }
-.page-template-home .article-img img {
-  min-height: 158px;
-}
 .page-template-home .issue-meta {
   font: .8em "Georgia", serif;
   text-transform: uppercase;
@@ -7200,6 +7197,10 @@ body {
 @media (max-width: 720px) {
   .page-template-home .article-img img {
     width: 100%;
+  }
+
+  #masthead #site-navigation {
+    margin-top: 0;
   }
 }
 #columns-nav a {
@@ -7455,6 +7456,18 @@ hr {
   font-style: italic;
 }
 
+@media (max-width: 720px) {
+  .single-article article * {
+    float: none !important;
+    width: auto !important;
+  }
+  .single-article #main {
+    padding: 15px;
+  }
+  .single-article .entry-title {
+    font-size: 18px;
+  }
+}
 .search-results #main .bsearchform {
   display: none;
 }

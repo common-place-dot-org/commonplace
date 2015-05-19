@@ -262,4 +262,19 @@
 
 // blockquote - left
 
-
+@media (max-width: 720px) {
+	.single-article{
+		article * {
+			float:none!important;
+			width:auto!important;
+		}
+		 #main {
+			padding: 15px;	
+		 }
+		 .entry-title {
+			font-size:18px;
+		}
+	}
+	
+	
+}

@@ -55,7 +55,6 @@ body {
 		box-shadow:         0 1px 4px 0 #bbb; 
 		
 		img {
-			min-height:158px;
 		}	 
 	}
 	.issue-meta {
@@ -107,6 +106,9 @@ body {
 @media (max-width: 720px) {
 	.page-template-home .article-img img {
 		width:100%;
+	}
+	#masthead #site-navigation {
+		margin-top:0;
 	}
 }
 

@@ -58,7 +58,14 @@ $extra_others_args = array (
 	</header>
 	<div id="extra-reviews" class="col-sm-8">
 		<header>
-			<h2 class="column-title">Reviews</h2>
+			<h2 class="column-title">
+			<?php $reviews = get_term_by('slug', 'reviews', 'column');?>
+			<a href="<?php echo get_term_link($reviews->term_id, 'column'); ?>">
+				<img src="<?php echo z_taxonomy_image_url($reviews->term_id); ?>" />
+				Reviews
+			</a>
+			</h2>
+			
 		</header>
 		<?php 
 		
@@ -132,7 +139,14 @@ $extra_others_args = array (
 				$extra_others_query->the_post(); 
 				?>
 				<article <?php post_class(); ?>>
-					<h3 class="column-title"><?php echo get_the_term_list( $post->ID, 'column');?> </h3>
+					<h3 class="column-title">
+						<?php foreach (get_the_terms(get_the_ID(), 'column') as $cat) : ?>
+							<a href="<?php echo get_term_link($cat->term_id, 'column'); ?>">
+								<img src="<?php echo z_taxonomy_image_url($cat->term_id); ?>" />
+								<?php echo $cat->name; ?>
+							</a>
+						<?php endforeach; ?>
+					</h3>
 					<h3 class="article-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
 					<div class="article-excerpt"><span class="article-author"><?php  
 							echo the_field('author_first_name',$post->ID);
