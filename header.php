@@ -49,7 +49,7 @@
 				</div>				
 				<div class="col-sm-4">
 					<h1 class="site-title">
-						<a href="<?php home_url(); ?>" rel="home">
+						<a href="<?php echo home_url(); ?>" rel="home">
 							<img src="<?php bloginfo('template_url'); ?>/img/logo.png" alt="<?php bloginfo( 'name' ); ?> : <?php bloginfo( 'description' ); ?>" class="img-responsive"/>
 						</a>
 					</h1>

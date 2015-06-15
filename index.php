@@ -66,6 +66,5 @@ else if(3<$featured_count || $featured_count<=6){
 			$features_count = $features_query->found_posts;
 			
 			echo $features_count;
-  
-
+ 
 ?>

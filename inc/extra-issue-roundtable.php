@@ -17,7 +17,7 @@
 			$extra_roundtable_query->the_post();
 			$extra_roundtableCounter++;
 			if ($extra_roundtableCounter == 1) {?>
-			<header>
+			<header class="col-sm-12">
 				<?php
 					if (get_the_post_thumbnail() != '') {
 						// if there's a featured image, display that. ?>
