@@ -1,57 +1,4 @@
-<?php 
-
-// get the ids of any child issues of the current issue. 
-$extra_id = (array) get_term_children($issue_id, 'issue');
-
-// only need the first item, as we will never display more than 1 extra issue. 
-$extra_id = $extra_id[0];
-
-// collect information about this particular extra issue. 
-$extra_obj = get_term($extra_id, 'issue');
-$extra_slug = $extra_obj->slug;
-$extra_name = $extra_obj->name;
-$extra_description = $extra_obj->description;
-
-// We'll use these both for the query, and to count the number of articles from each. 
-$extra_reviews_args = array(
-	'post_type' => 'article',
-	'orderby'			 => 'menu_order title',
-	'order'  			 => 'ASC',
-	'tax_query'		 => array(
-							'relation' => 'AND',
-							array(
-								'taxonomy'  => 'issue',
-								'field'     => 'id',
-								'terms'     => $extra_id
-							),
-							array(
-								'taxonomy'  => 'column',
-								'field'     => 'slug',
-								'terms'     => 'reviews'
-							)
-						)
-);
-$extra_others_args = array (
-	'post_type' => 'article',
-	'orderby'			 => 'menu_order title',
-	'order'  			 => 'ASC',
-	'tax_query'		 => array(
-							'relation' => 'AND',
-							array(
-								'taxonomy'  => 'issue',
-								'field'     => 'id',
-								'terms'     => $extra_id,
-							),
-							array(
-								'taxonomy'  => 'column',
-								'field'     => 'slug',
-								'terms'     => 'reviews',
-								'operator'  => 'NOT IN'
-							)
-						)
-);
-?>
-<div class="extra-issue row" id="issue-<?php echo $extra_slug; ?>">
+<div class="extra-issue extra-issue-standard row" id="issue-<?php echo $extra_slug; ?>">
 	<header class="col-sm-12">
 		<p class="issue-meta">
 			<?php 
@@ -73,13 +20,7 @@ $extra_others_args = array (
 		</header>
 		<?php 
 		
-		// count the reviews, we'll use this to create rows for the articles. 
-		$extra_reviews = 	get_posts($extra_reviews_args);
-		$extra_reviews_count = count($extra_reviews); 
-		$extraCounter = 1;
-		
-		// query the reviews, setup a loop. 
-		$extra_reviews_query = new WP_Query($extra_reviews_args);			
+			
 		while ( $extra_reviews_query->have_posts() ) {
 			$extra_reviews_query->the_post(); 
 			
@@ -138,7 +79,6 @@ $extra_others_args = array (
 		<div class="row">
 			<div class="col-sm-12">
 			<?php 
-			$extra_others_query = new WP_Query($extra_others_args);		
 			while ( $extra_others_query->have_posts() ) {
 				$extra_others_query->the_post(); 
 				?>
@@ -165,4 +105,3 @@ $extra_others_args = array (
 		</div>
 	</div>
 </div><!-- /extra issue -->
-<hr/>
