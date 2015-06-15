@@ -48,11 +48,16 @@ get_header();
 		'meta_value' => 'active'
 	);
 	$loop = new WP_Query( $args );
+	$colcounter = 0;
 	while ( $loop->have_posts() ) : $loop->the_post();
+		$colcounter++;
 	?>
 		<div class="col-sm-4">	
 			<?php printProject();?>
 		</div>
+		<?php if ($colcounter % 3 == 0){
+			echo '</div><div class="row">';
+		}?>
 	<?php endwhile;?>
 </div>
 <div class="row">	
@@ -62,14 +67,22 @@ get_header();
 		'meta_key' => 'project_status',
 		'meta_value' => 'archived'
 	);
+
 	$loop = new WP_Query( $args );
+	$colcounter = 0;
 	while ( $loop->have_posts() ) : $loop->the_post();
+		$colcounter++;
 	?>
-		<div class="col-sm-3">	
+		<div class="col-sm-3">
+			<h1><?php echo $colcounter; ?>...</h1>
 			<?php printProject();?>
 		</div>
+		<?php if ($colcounter % 4 == 0){
+			echo '</div><div class="row">';
+		}?>
+		
 	<?php endwhile;?>
-</div>
+</div><!-- /row -->
 <?php 
 get_footer();
 ?>

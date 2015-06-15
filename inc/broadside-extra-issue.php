@@ -15,6 +15,8 @@ $extra_description = $extra_obj->description;
 // We'll use these both for the query, and to count the number of articles from each. 
 $extra_reviews_args = array(
 	'post_type' => 'article',
+	'orderby'			 => 'menu_order title',
+	'order'  			 => 'ASC',
 	'tax_query'		 => array(
 							'relation' => 'AND',
 							array(
@@ -31,6 +33,8 @@ $extra_reviews_args = array(
 );
 $extra_others_args = array (
 	'post_type' => 'article',
+	'orderby'			 => 'menu_order title',
+	'order'  			 => 'ASC',
 	'tax_query'		 => array(
 							'relation' => 'AND',
 							array(

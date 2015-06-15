@@ -19,4 +19,6 @@ jQuery(document).ready(function($) {
 	bsearchformBootstrapper();
 	bsearchformResultsFormat();
 	
+	$('#search .s').attr('placeholder', 'Search articles...');
+	$('.gallery img').addClass('img-responsive');
 });

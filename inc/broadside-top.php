@@ -58,7 +58,7 @@ $features_args = array(
 	'posts_per_page'   => -1,
 	'post_type'        => 'article',
 	'orderby'			 => 'menu_order title',
-	'order'  			 => 'DESC',
+	'order'  			 => 'ASC',
 	'column' 			 => 'features',
 	'issue'				 => $issue_slug
 );
@@ -67,7 +67,7 @@ $roundtables_args = array(
 	'posts_per_page'   => -1,
 	'post_type'        => 'article',
 	'orderby'			 => 'menu_order title',
-	'order'  			 => 'DESC',
+	'order'  			 => 'ASC',
 	'column' 			 => 'roundtable',
 	'issue'				 => $issue_slug
 );
@@ -214,7 +214,7 @@ if ($roundtables_count > 0 ){
 				<?php $feats = get_term_by('slug', 'features', 'column');?>
 				<a href="<?php echo get_term_link($feats->term_id, 'column'); ?>">
 					<img src="<?php echo z_taxonomy_image_url($feats->term_id); ?>" />
-					Reviews
+					Features
 				</a>
 			</h2>
 		</header>

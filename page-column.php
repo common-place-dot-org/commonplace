@@ -15,7 +15,20 @@ get_header();
 <div class="row">
 	<div class="col-sm-12">
 		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-			<h1><?php the_title()?></h1>
+			<h1>
+		
+			<?php 
+			
+			
+				$col_to_display = get_field('column_to_display');
+				$col = get_term_by('id', $col_to_display, 'column');
+				$thecat = get_term_by('slug', $col->name, 'column');?>
+				<a href="<?php bloginfo('url')?>/book/column/<?php echo $col->slug ?>">	
+					<img src="<?php echo z_taxonomy_image_url($thecat->term_id); ?>" />
+					<?php the_title()?> <span class="archive-link">View More &raquo;</span>
+				</a>
+			
+			</h1>
 			<?php the_content();?>
 		<?php endwhile; endif; ?>
 	</div>
@@ -80,7 +93,7 @@ get_header();
 		<?php endwhile;?>
 		<?php wp_reset_query(); ?>
 		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-			<p><a href="<?php bloginfo('url')?>/book/column/<?php echo get_field('column_to_display')?>">Archives for <?php the_title()?> &raquo;</a></p>
+			<p><a href="<?php bloginfo('url')?>/book/column/<?php echo $col->slug ?>" class="btn btn-default">Archives for <?php the_title()?> &raquo;</a></p>
 		<?php endwhile; endif; ?>
 		
 	</div>

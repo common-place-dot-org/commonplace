@@ -1,10 +1,9 @@
 <?php 
 
-// ** Features query
 $reviews_args = array(
 	'post_type'        => 'article',
 	'orderby'			 => 'menu_order title',
-	'order'  			 => 'DESC',
+	'order'  			 => 'ASC',
 	'tax_query' 		 => array(
 		'relation' => 'AND',
 		array(
@@ -20,11 +19,11 @@ $reviews_args = array(
 			)
 	)
 );
-// ** Roundtable query  
+
 $others_args = array(
 	'post_type'        => 'article',
 	'orderby'			 => 'menu_order title',
-	'order'  			 => 'DESC',
+	'order'  			 => 'ASC',
 	'tax_query' 		 => array(
 		'relation' => 'AND',
 		array(

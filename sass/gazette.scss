@@ -122,7 +122,7 @@ body {
 }
 
 hr {
-	border-top-color:#EDC2C2;
+	border-top-color:#CD8E8E;
 }
 
 .site-footer {
@@ -146,13 +146,29 @@ hr {
 .page-template-page-column {
 	#content {
 		padding-bottom:30px;
-	}
+	
 	h1 {
 		color:black;
 		font-size:1.2em;
 		text-transform:uppercase;
 		letter-spacing:1px;
 		font-weight:normal;
+		
+		a {
+		
+			img {
+				height:30px;
+				}
+			.archive-link {
+				text-transform:none;
+				margin-left:2em;
+				font-size:1em;
+				letter-spacing:0;
+				}
+			
+		}
+		}
+		 
 	}
 	h2 {
 		
@@ -269,5 +285,12 @@ hr {
 			}
 		}
 			
+	}
+}
+
+a.uconn {
+	color:#000066;
+	&:hover {
+		color:#12226A;
 	}
 }
