@@ -29,7 +29,13 @@ get_header(); ?>
 						</li>
 					</ol>
 					<h1 class="entry-title"><?php the_title(); ?></h1>
-					<p><?php the_field('author_prefix');?> <?php the_field('author_first_name');?> <?php the_field('author_last_name');?> <?php the_field('author_suffix');?></p>
+					<p><?php the_field('author_prefix');?> <?php the_field('author_first_name');?> <?php the_field('author_last_name');?> <?php the_field('author_suffix');?>
+						<?php
+							$other_authors = get_field('additional_authors',$post->ID);
+							if ($other_authors){
+								echo ', '.$other_authors;
+							}?>
+					</p>
 				</header><!-- .entry-header -->
 				<div class="entry-excerpt">
 					<div class="well">

@@ -241,10 +241,10 @@ if ($roundtables_count > 0 ){
 							<div class="col-sm-<?php echo $feature_img_width; ?>">
 								<figure class="article-img">
 									<a href="<?php the_permalink();?>"><? if ( has_post_thumbnail() ) {
-												the_post_thumbnail('post-thumbnail', array(
-												'class' => "attachment-$size img-responsive",
-												));
-											};?></a>
+										the_post_thumbnail('post-thumbnail', array(
+										'class' => "attachment-$size img-responsive",
+										));
+									};?></a>
 								</figure>
 							</div>
 							<div class="col-sm-<?php echo $feature_text_width ?>">
@@ -255,6 +255,11 @@ if ($roundtables_count > 0 ){
 								echo the_field('author_first_name',$post->ID);
 								echo ' ';
 								echo the_field('author_last_name',$post->ID); ?>
+								<?php
+								$other_authors = get_field('additional_authors',$post->ID);
+								if ($other_authors){
+									echo ', '.$other_authors;
+								}?>
 								</span><?php the_excerpt();?></div>
 							</div>
 						</div>

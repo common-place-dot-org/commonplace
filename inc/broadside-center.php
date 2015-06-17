@@ -93,7 +93,11 @@ echo var_dump($roundtables_count);
 				<div class="article-excerpt"><span class="article-author"><?php  
 							echo the_field('author_first_name',$post->ID);
 							echo ' ';
-							echo the_field('author_last_name',$post->ID); ?>
+							echo the_field('author_last_name',$post->ID); ?><?php
+							$other_authors = get_field('additional_authors',$post->ID);
+							if ($other_authors){
+								echo ', '.$other_authors;
+							}?>
 							</span><?php the_excerpt();?></div>
 			</div>
 		</div>
@@ -137,7 +141,11 @@ echo var_dump($roundtables_count);
 						echo the_field('author_first_name',$post->ID);
 						echo ' ';
 						echo the_field('author_last_name',$post->ID); 
-					?>
+					?><?php
+							$other_authors = get_field('additional_authors',$post->ID);
+							if ($other_authors){
+								echo ', '.$other_authors;
+							}?>
 					</span>
 					<?php the_excerpt();?>
 				</div>
