@@ -17,7 +17,8 @@ $issue_obj = get_term($issue_id, 'issue');
 $issue_slug = $issue_obj->slug;
 $issue_name = $issue_obj->name;
 $issue_description = $issue_obj->description;
-
+$issue_id = $issue_obj->term_taxonomy_id;
+$issue_image_src = z_taxonomy_image_url($issue_id, 'medium');
 ?>
 
 
@@ -34,6 +35,20 @@ $issue_description = $issue_obj->description;
 			echo $issue_name .' : '. $issue_description ;
 		?>
 	</p>
+	<?php $reviews = get_term_by('slug', 'reviews', 'column');?>
+
+<?php 
+
+if ($issue_image_src) {
+	?>
+<div class="issue-image">
+<img src="<?php echo $issue_image_src ?>" class="img-responsive"/>
+</div>
+ <?php }?>
+	
+	
+	
+	
 	<?php  include('inc/broadside-top.php') ?>
 	<?php  include('inc/broadside-center.php') ?>
 </div><!-- /main issue -->
