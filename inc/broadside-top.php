@@ -188,7 +188,7 @@ if ($roundtables_count > 0 ){
 		// if there are any other number of features
 		default :
 			$features_articles_per_row = 3;
-			$features_article_width = 12;
+			$features_article_width = 4;
 			$feature_img_width = 3;
 			$feature_text_width = 9;
 	}
